@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 body {
     font-family: 'Nunito', sans-serif;
     background: #fafafa;
@@ -214,5 +215,14 @@ a.article, a.article:hover {
     }
 
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ist-fontsize-2{
+    font-size: 12px;
+}
+
+.ist-fontsize-3{
+    font-size: 13px;
+}
+.ist-fontsize-4{
+    font-size: 14px;
+}
+

@@ -1,0 +1,55 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { stringify } from 'querystring';
+import { RegisterUser } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user.service';
+@Component({
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
+})
+export class RegistrationComponent implements OnInit {
+  signUpUserName:string="";
+  signUpEmail:string="";
+  signUpPassword:string="";
+  registerModel:RegisterUser;
+  validEmail:boolean = false;
+  validPassword:boolean = false;
+  constructor(private userService: UserService) { }
+  ngOnInit(): void {
+    //Animation for signin and sign up toggle
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+    const sign_up_btn = document.querySelector("#sign-up-btn");
+    const container = document.querySelector(".container");
+    sign_up_btn.addEventListener("click", () => {
+      container.classList.add("sign-up-mode");
+    });
+    sign_in_btn.addEventListener("click", () => {
+      container.classList.remove("sign-up-mode");
+    });
+  }
+
+  checkValidPassword(){
+    var onlyNumbers = /^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/;
+    var testnumber = onlyNumbers.test(String(this.signUpPassword));
+    var check = (this.signUpPassword.length >= 6 && testnumber)?true:false;
+       return this.validPassword = check;
+  }
+
+  checkValidEmail(){
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var val =  re.test(String(this.signUpEmail).toLowerCase());
+    return this.validEmail = val;
+  }
+  signUp(){
+    this.registerModel = {
+      Name : this.signUpUserName,
+      Email:this.signUpEmail,
+      Password:this.signUpPassword
+    }
+
+    this.userService.register(this.registerModel).subscribe( x=>{
+      ;
+    });
+  }
+}
