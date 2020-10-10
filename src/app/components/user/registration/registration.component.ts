@@ -10,13 +10,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
   constructor(private userService: UserService, private toastr: ToastrService, private router:Router) { }
   ngOnInit(): void {
     if(localStorage.getItem('token') !=null){
       this.router.navigate(['/home'])
     }
-
     //Animation for signin and sign up toggle
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
@@ -28,7 +26,6 @@ export class RegistrationComponent implements OnInit {
       container.classList.remove("sign-up-mode");
     });
   }
-
   // Sign Up Part //
   signUpUserName: string = "";
   signUpEmail: string = "";
@@ -56,7 +53,6 @@ export class RegistrationComponent implements OnInit {
       Password: this.signUpPassword
     }
     this.userService.register(this.registerModel).subscribe(res => {
-
       if (res.toString().includes("Sucessfully")) {
         this.resetSignUpForm()
         this.toastr.success(res.toString(), 'Success');
@@ -79,14 +75,10 @@ export class RegistrationComponent implements OnInit {
     this.validEmail = false;
     this.validPassword = false;
   }
-
-
   //SignIn Part
-
   signInEmail:string="";
   signInPassword: string = "";
   loginModel:LoginUser
-
   signIn(){
     this.loginModel={
       Email:this.signInEmail,
@@ -106,5 +98,4 @@ export class RegistrationComponent implements OnInit {
         }
     })
   }
-
 }

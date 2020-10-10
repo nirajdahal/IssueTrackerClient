@@ -8,15 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsComponent } from './components/components.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ToastrModule } from 'ngx-toastr';
+import { UserprofileComponent } from './components/main/userprofile/userprofile.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     MainComponent,
     RegistrationComponent,
-    ComponentsComponent
+    ComponentsComponent,
+    UserprofileComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,12 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

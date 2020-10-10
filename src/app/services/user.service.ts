@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { LoginUser, RegisterUser } from '../models/User';
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,12 @@ export class UserService {
 
   login(data:LoginUser) {
     var res = this.http.post(this.BaseURI + '/user/login', data);
+    return res ;
+  }
+
+  getUserData() {
+
+    var res = this.http.get(this.BaseURI + '/profile');
     return res ;
   }
 }

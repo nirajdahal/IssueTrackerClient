@@ -16,7 +16,7 @@
           </a>
           <ul class="collapse list-unstyled" id="ProjectSubmenu">
             <li>
-              <a href="#">Dashboard</a>
+              <a [routerLink]="['/home/profile']">Profile</a>
             </li>
             <li>
               <a href="#">Create</a>
@@ -52,7 +52,7 @@
           </div>
         </div>
       </nav>
-      <app-components></app-components>
+      <router-outlet></router-outlet>
     </div>
   </div>
 
