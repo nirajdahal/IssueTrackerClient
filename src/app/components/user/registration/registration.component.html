@@ -1,4 +1,5 @@
 <div class="container">
+  <!-- Forms -->
   <div class="forms-container">
     <div class="signin-signup">
       <!-- Sign Up Form -->
@@ -28,25 +29,25 @@
           &nbsp;Password
           has
           atleast 6 characters</p>
-          <i *ngIf="signingUp" class="fas fa-spinner fa-spin"></i>
+        <i *ngIf="signingUp" class="fas fa-spinner fa-spin"></i>
         <input [disabled]="!validEmail || !validPassword" type="submit" class="btn" value="Sign up" (click)="signUp()">
-
       </form>
       <!-- Sign In Form -->
       <form class="sign-in-form">
         <h2 class="title">Sign in</h2>
         <div class="input-field">
           <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" />
+          <input name ="loginEmail" type="email" placeholder="Email" [(ngModel)]="signInEmail">
         </div>
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" />
+          <input name ="loginPassword" type="password" placeholder="Password" [(ngModel)]="signInPassword">
         </div>
-        <input type="submit" value="Login" class="btn solid" />
+        <input type="submit" value="Login" class="btn solid" (click)="signIn()">
       </form>
     </div>
   </div>
+  <!-- Side Panel -->
   <div class="panels-container">
     <div class="panel left-panel">
       <div class="content">

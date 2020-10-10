@@ -1,6 +1,8 @@
+import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { RegisterUser } from 'src/app/models/User';
+import { LoginUser, RegisterUser } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-registration',
@@ -8,15 +10,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  signUpUserName: string = "";
-  signUpEmail: string = "";
-  signUpPassword: string = "";
-  registerModel: RegisterUser;
-  validEmail: boolean = false;
-  validPassword: boolean = false;
-  signingUp:boolean=false;
-  constructor(private userService: UserService, private toastr: ToastrService) { }
+
+  constructor(private userService: UserService, private toastr: ToastrService, private router:Router) { }
   ngOnInit(): void {
+    if(localStorage.getItem('token') !=null){
+      this.router.navigate(['/home'])
+    }
+
     //Animation for signin and sign up toggle
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
@@ -28,6 +28,15 @@ export class RegistrationComponent implements OnInit {
       container.classList.remove("sign-up-mode");
     });
   }
+
+  // Sign Up Part //
+  signUpUserName: string = "";
+  signUpEmail: string = "";
+  signUpPassword: string = "";
+  registerModel: RegisterUser;
+  validEmail: boolean = false;
+  validPassword: boolean = false;
+  signingUp: boolean = false;
   checkValidPassword() {
     // var onlyNumbers = /^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/;
     // var testnumber = onlyNumbers.test(String(this.signUpPassword));
@@ -50,25 +59,52 @@ export class RegistrationComponent implements OnInit {
 
       if (res.toString().includes("Sucessfully")) {
         this.resetSignUpForm()
-        this.toastr.success('Sucessfully registered!','Thank You!!');
+        this.toastr.success(res.toString(), 'Success');
       }
       else if (res.toString().includes("Sorry")) {
         this.signingUp = false;
-        this.toastr.error('Email Already Registered','Sorry!!' );
+        this.toastr.error(res.toString(), 'Failed');
       }
       else {
         this.signingUp = false;
-        this.toastr.error('Registration Failed!','Sorry!!');
+        this.toastr.error('Registration Failed!', 'Sorry!!');
       }
     });
   }
-
-  resetSignUpForm(){
+  resetSignUpForm() {
     this.signingUp = false;
-        this.signUpEmail = "";
-        this.signUpPassword="";
-        this.signUpUserName="";
-        this.validEmail=false;
-        this.validPassword=false;
+    this.signUpEmail = "";
+    this.signUpPassword = "";
+    this.signUpUserName = "";
+    this.validEmail = false;
+    this.validPassword = false;
   }
+
+
+  //SignIn Part
+
+  signInEmail:string="";
+  signInPassword: string = "";
+  loginModel:LoginUser
+
+  signIn(){
+    this.loginModel={
+      Email:this.signInEmail,
+      Password: this.signInPassword
+    }
+    this.userService.login(this.loginModel).subscribe((res:any)=> {
+      localStorage.setItem("token", res.token);
+      this.toastr.success("Login Sucessful", 'Thank You!');
+      this.router.navigateByUrl("/home");
+    },
+    (err) => {
+        if(err.status == 400){
+          this.toastr.warning("Incorrect username or password", 'Failed!');
+        }
+        else{
+          this.toastr.error("Login Failed", 'Sorry!');
+        }
+    })
+  }
+
 }

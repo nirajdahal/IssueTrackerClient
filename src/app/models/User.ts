@@ -4,3 +4,9 @@ export class RegisterUser{
     Password:string;
 }
 
+export class LoginUser{
+
+    Email:string;
+    Password:string;
+}
+
