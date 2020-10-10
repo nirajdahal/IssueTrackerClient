@@ -9,7 +9,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsComponent } from './components/components.component';
 import { HttpClientModule } from "@angular/common/http";
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +24,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

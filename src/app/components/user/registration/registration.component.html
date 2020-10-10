@@ -2,7 +2,7 @@
   <div class="forms-container">
     <div class="signin-signup">
       <!-- Sign Up Form -->
-      <form class="sign-up-form">
+      <form class="sign-up-form" autocomplete="off">
         <h2 class="title">Sign up</h2>
         <div class="input-field">
           <i class="fas fa-user"></i>
@@ -27,7 +27,8 @@
             *ngIf="validPassword"></i>
           &nbsp;Password
           has
-          atleast 6 characters and is Alphanumeric</p>
+          atleast 6 characters</p>
+          <i *ngIf="signingUp" class="fas fa-spinner fa-spin"></i>
         <input [disabled]="!validEmail || !validPassword" type="submit" class="btn" value="Sign up" (click)="signUp()">
 
       </form>
