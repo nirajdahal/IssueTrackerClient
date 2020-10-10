@@ -9,7 +9,7 @@ export class UserprofileComponent implements OnInit {
   userName:string="";
   userEmail:string="";
   userInfo: Object = {
-    username:"",
+    name:"",
     email:""
   };
   constructor(private userService: UserService) { }
