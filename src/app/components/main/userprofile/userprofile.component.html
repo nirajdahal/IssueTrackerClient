@@ -1,6 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col text-center">
+        <div *ngIf ="!valueExtracted" class="col text-center">
+            <p>Username: {{name}}</p>
+            <p>Email: {{email}}</p>
+        </div>
+        <div *ngIf ="valueExtracted" class="col text-center">
             <p>Username: {{userInfo.name}}</p>
             <p>Email: {{userInfo.email}}</p>
         </div>

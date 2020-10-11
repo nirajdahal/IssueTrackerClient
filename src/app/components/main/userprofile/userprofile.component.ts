@@ -6,16 +6,19 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./userprofile.component.css']
 })
 export class UserprofileComponent implements OnInit {
-  userName:string="";
-  userEmail:string="";
-  userInfo: Object = {
-    name:"",
-    email:""
-  };
+
+  name = "abc";
+  email="abc";
+  userInfo;
+  valueExtracted: boolean = false;
   constructor(private userService: UserService) { }
   ngOnInit(): void {
-    this.userService.getUserData().subscribe(data=> {
-      this.userInfo = data;
-    })
+    if(localStorage.getItem("token")!==null){
+      this.userService.getUserData().subscribe(data=> {
+        this.valueExtracted = true;
+        this.userInfo = data;
+      })
+    }
+
   }
 }

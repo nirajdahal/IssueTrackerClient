@@ -91,7 +91,7 @@ export class RegistrationComponent implements OnInit {
       Password: this.signInPassword
     }
     this.userService.login(this.loginModel).subscribe((res: any) => {
-      localStorage.setItem("token", res.token);
+      localStorage.setItem("issueTrackerToken", res.token);
       this.toastr.success("Login Sucessful", 'Thank You!');
       this.router.navigateByUrl("/home");
     },

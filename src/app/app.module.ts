@@ -12,6 +12,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ToastrModule } from 'ngx-toastr';
 import { UserprofileComponent } from './components/main/userprofile/userprofile.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { JwtModule } from "@auth0/angular-jwt";
+
+export function tokenGetter() {
+  return localStorage.getItem("issueTrackerToken");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +33,12 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter
+      }
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
