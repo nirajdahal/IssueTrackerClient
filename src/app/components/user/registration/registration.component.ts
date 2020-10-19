@@ -15,7 +15,6 @@ export class RegistrationComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router
   ) {
-
   }
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
@@ -91,6 +90,7 @@ export class RegistrationComponent implements OnInit {
       Password: this.signInPassword
     }
     this.userService.login(this.loginModel).subscribe((res: any) => {
+      console.log(res);
       localStorage.setItem("issueTrackerToken", res.token);
       this.toastr.success("Login Sucessful", 'Thank You!');
       this.router.navigateByUrl("/home");
@@ -98,6 +98,9 @@ export class RegistrationComponent implements OnInit {
       (err) => {
         if (err.status == 400) {
           this.toastr.warning("Incorrect username or password", 'Failed!');
+        }
+        if (err.status == 401) {
+          this.toastr.warning("Admin hasnot verified your account", 'Unauthorized!');
         }
         else {
           this.toastr.error("Login Failed", 'Sorry!');

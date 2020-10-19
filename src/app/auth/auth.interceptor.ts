@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 tap(
                     succ => { },
                     err => {
-                        if (err.status == 401){
+                        if (err.status == 401) {
                             localStorage.removeItem('issueTrackerToken');
                             this.router.navigateByUrl('/user/login');
                         }

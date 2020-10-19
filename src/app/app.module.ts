@@ -13,6 +13,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { UserprofileComponent } from './components/main/userprofile/userprofile.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { JwtModule } from "@auth0/angular-jwt";
+import { CreateTicketComponent } from './components/main/tickets/create-ticket/create-ticket.component';
+import { UpdateTicketComponent } from './components/main/tickets/update-ticket/update-ticket.component';
+import { AllTicketsComponent } from './components/main/tickets/all-tickets/all-tickets.component';
+import { MyTicketsComponent } from './components/main/tickets/my-tickets/my-tickets.component';
 
 export function tokenGetter() {
   return localStorage.getItem("issueTrackerToken");
@@ -24,7 +28,11 @@ export function tokenGetter() {
     MainComponent,
     RegistrationComponent,
     ComponentsComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    CreateTicketComponent,
+    UpdateTicketComponent,
+    AllTicketsComponent,
+    MyTicketsComponent
   ],
   imports: [
     BrowserModule,
