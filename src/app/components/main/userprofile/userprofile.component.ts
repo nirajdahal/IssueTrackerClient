@@ -13,10 +13,12 @@ export class UserprofileComponent implements OnInit {
   valueExtracted: boolean = false;
   constructor(private userService: UserService) { }
   ngOnInit(): void {
-    if(localStorage.getItem("token")!==null){
+    if(localStorage.getItem("issueTrackerToken")!==null){
       this.userService.getUserData().subscribe(data=> {
         this.valueExtracted = true;
+
         this.userInfo = data;
+        console.log(this.userInfo)
       })
     }
 

@@ -226,3 +226,6 @@ a.article, a.article:hover {
     font-size: 14px;
 }
 
+input{
+    border-radius: 0px;
+}

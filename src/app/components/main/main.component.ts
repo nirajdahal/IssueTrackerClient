@@ -17,7 +17,6 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.userRole = this.userService.userRole();
     if(this.userService.accessMainComponent()){
-
       this.router.navigate(['/user/registration']);
       this.toastr.warning("Admin permission required", 'Failed');
     }

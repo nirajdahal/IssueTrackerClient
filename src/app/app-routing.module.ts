@@ -5,6 +5,7 @@ import { UserComponent } from './components/user/user.component';
 import {MainComponent} from './components/main/main.component';
 import { AuthGuard } from './auth/auth.guard';
 import { UserprofileComponent } from './components/main/userprofile/userprofile.component';
+import { CreateTicketComponent } from './components/main/tickets/create-ticket/create-ticket.component';
 const routes: Routes = [
   {path:'',redirectTo:'/user/registration',pathMatch:'full'},
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {path: 'home', component: MainComponent,canActivate:[AuthGuard],
   children: [
-    { path: 'profile', component: UserprofileComponent}
+    { path: 'profile', component: UserprofileComponent},
+    { path: 'ticket/create', component: CreateTicketComponent}
   ]}
 ];
 
