@@ -17,6 +17,7 @@ import { CreateTicketComponent } from './components/main/tickets/create-ticket/c
 import { UpdateTicketComponent } from './components/main/tickets/update-ticket/update-ticket.component';
 import { AllTicketsComponent } from './components/main/tickets/all-tickets/all-tickets.component';
 import { MyTicketsComponent } from './components/main/tickets/my-tickets/my-tickets.component';
+import { MatTableModule } from '@angular/material/table';
 
 export function tokenGetter() {
   return localStorage.getItem("issueTrackerToken");
@@ -41,6 +42,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    MatTableModule,
     ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {

@@ -22,7 +22,6 @@ const routes: Routes = [
     { path: 'ticket/gettickets', component: AllTicketsComponent}
   ]}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
