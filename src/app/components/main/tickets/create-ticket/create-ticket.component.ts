@@ -1,20 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ProjectIdNameVm } from 'src/app/models/Projects/Project';
-import { TicketForCreation, TicketPriorityVm, TicketTypeVm } from 'src/app/models/Tickets/Ticket';
+import { TicketForCreation, TicketPriorityVmDto, TicketTypeVmDto } from 'src/app/models/Tickets/Ticket';
 import { ProjectsService } from 'src/app/services/Projects/projects.service';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
-
 @Component({
   selector: 'app-create-ticket',
   templateUrl: './create-ticket.component.html',
   styleUrls: ['./create-ticket.component.css']
 })
 export class CreateTicketComponent implements OnInit {
-
   ticketForCreation: TicketForCreation;
-  ticketTypeValues: TicketTypeVm[] = [];
-  ticketPriority: TicketPriorityVm[] = [];
+  ticketTypeValues: TicketTypeVmDto[] = [];
+  ticketPriority: TicketPriorityVmDto[] = [];
   ticketProjectIdName: ProjectIdNameVm[] = [];
   showTicketType: boolean = false;
   showTicketStatus: boolean = false;
@@ -26,17 +24,14 @@ export class CreateTicketComponent implements OnInit {
   ticketTitle: string = "";
   ticketDescription: string = "";
   constructor(private projectService: ProjectsService, private ticketService: TicketsService, private toastr: ToastrService) { }
-
   ngOnInit(): void {
     this.getTicketPriority();
     this.getTicketTypes();
     this.getProjectNameId();
   }
-
   getTicketTypes() {
     this.ticketService.getTicketType().subscribe(data => {
       this.ticketTypeValues = data;
-      console.log(this.ticketTypeValues);
       this.showTicketType = true;
     },
       err => {
@@ -48,11 +43,9 @@ export class CreateTicketComponent implements OnInit {
         }
       });
   }
-
   getTicketPriority() {
     this.ticketService.getTicketPriority().subscribe(data => {
       this.ticketPriority = data;
-      console.log(this.ticketTypeValues);
       this.showTicketPriority = true;
     },
       err => {
@@ -64,10 +57,8 @@ export class CreateTicketComponent implements OnInit {
         }
       });
   }
-
   getProjectNameId() {
     this.projectService.getProjectIdName().subscribe(data => {
-
       this.ticketProjectIdName = data;
       this.showProjectIdName = true;
     },
@@ -80,7 +71,6 @@ export class CreateTicketComponent implements OnInit {
         }
       });
   }
-
   createTicket() {
     this.ticketForCreation = {
       "TTypeId": this.ticketId,
@@ -88,12 +78,9 @@ export class CreateTicketComponent implements OnInit {
       "Title": this.ticketTitle,
       "Description": this.ticketDescription,
       "ProjectId": this.projectId
-
     }
     this.ticketService.createTicket(this.ticketForCreation).subscribe(data => {
       console.log(data)
     });
   }
-
-
 }

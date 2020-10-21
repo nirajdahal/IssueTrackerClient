@@ -1,59 +1,55 @@
-
-
 <div class="wrapper">
-    <!-- Sidebar  -->
+  <!-- Sidebar  -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>IssueTracker</h3>
+      <strong>IT</strong>
+    </div>
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="fas fa-project-diagram"></i>
+         Ticket
+        </a>
+        <ul class="collapse list-unstyled" id="ProjectSubmenu">
+          <li>
+            <a [routerLink]="['/home/ticket/gettickets']">All Tickets</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/profile']">My Tickets</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/ticket/create']">Create</a>
+          </li>
 
-    <nav id="sidebar">
-      <div class="sidebar-header">
-        <h3>IssueTracker</h3>
-        <strong>IT</strong>
-      </div>
-      <ul class="list-unstyled components">
-        <li class="active">
-          <a href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="fas fa-project-diagram"></i>
-            Project
-          </a>
-          <ul class="collapse list-unstyled" id="ProjectSubmenu">
-            <li>
-              <a [routerLink]="['/home/profile']">Profile</a>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- Page Content  -->
+  <div id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 pl-0">
+      <div class="container-fluid pl-0">
+        <button type="button" id="sidebarCollapse" class=" btn btn-blue">
+          <i class="fas fa-arrows-alt-h"></i>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-align-justify"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link"><i class="fas fa-bell">&nbsp;&nbsp;</i></a>
             </li>
-            <li>
-              <a [routerLink]="['/home/ticket/create']">Create</a>
-            </li>
-            <li>
-              <a href="#">Assign</a>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()">Logout <i class="fas fa-door-open"></i></a>
             </li>
           </ul>
-        </li>
-      </ul>
-    </nav>
-    <!-- Page Content  -->
-    <div id="content">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 pl-0">
-        <div class="container-fluid pl-0">
-          <button type="button" id="sidebarCollapse" class=" btn btn-blue">
-            <i class="fas fa-arrows-alt-h"></i>
-          </button>
-          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" ><i class="fas fa-bell">&nbsp;&nbsp;</i></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" (click)="logout()">Logout <i class="fas fa-door-open"></i></a>
-              </li>
-            </ul>
-          </div>
         </div>
-      </nav>
-      <router-outlet></router-outlet>
-    </div>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
   </div>
-
-<app-create-ticket></app-create-ticket>
+</div>
