@@ -1,10 +1,57 @@
 table {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    min-width: 500px;
+  width: 100%;
+  overflow-x: scroll;
 }
-th.mat-header-cell {
-    text-align: left;
-    max-width: 300px;
+
+tr.example-detail-row {
+  height: 0;
+  overflow: hidden;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+  padding: 2px;
+  padding-left: 2px;
+  text-align: center;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 2px;
+  text-align: center;
 }

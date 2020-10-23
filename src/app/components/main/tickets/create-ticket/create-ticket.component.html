@@ -15,14 +15,14 @@
             <label class="mr-sm-2" for="ticketTypes">Ticket Types</label>
             <select [(ngModel)]="ticketId" class="custom-select mr-sm-2" id="ticketTypes">
                 <option *ngFor="let ticketTypeValue of ticketTypeValues" value="{{ticketTypeValue.id}}">
-                    {{ticketTypeValue.name}}</option>
+                    {{ticketTypeValue.Name}}</option>
             </select>
         </div>
         <div class="col-12 col-lg-4 mt-2">
             <label class="mr-sm-2" for="ticketTypes">Ticket Priority</label>
             <select [(ngModel)]="priorityId" class="custom-select mr-sm-2" id="ticketPriority">
                 <option *ngFor="let ticketPriorityValue of ticketPriority" value="{{ticketPriorityValue.id}}">
-                    {{ticketPriorityValue.name}}</option>
+                    {{ticketPriorityValue.Name}}</option>
             </select>
         </div>
         <div class="col-12 col-lg-4 mt-1">
@@ -30,7 +30,7 @@
             <select [(ngModel)]="projectId" class="custom-select mr-sm-2" id="ticketPriority">
                 <option *ngFor="let ticketProjectIdNameValue of ticketProjectIdName"
                     value="{{ticketProjectIdNameValue.id}}">
-                    {{ticketProjectIdNameValue.title}}</option>
+                    {{ticketProjectIdNameValue.Title}}</option>
             </select>
         </div>
     </div>

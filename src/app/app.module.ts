@@ -9,6 +9,7 @@ import { RegistrationComponent } from './components/user/registration/registrati
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsComponent } from './components/components.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { MatSortModule } from '@angular/material/sort';
 import { ToastrModule } from 'ngx-toastr';
 import { UserprofileComponent } from './components/main/userprofile/userprofile.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -17,7 +18,11 @@ import { CreateTicketComponent } from './components/main/tickets/create-ticket/c
 import { UpdateTicketComponent } from './components/main/tickets/update-ticket/update-ticket.component';
 import { AllTicketsComponent } from './components/main/tickets/all-tickets/all-tickets.component';
 import { MyTicketsComponent } from './components/main/tickets/my-tickets/my-tickets.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import {MatPaginatorModule } from '@angular/material/paginator';
+
 
 export function tokenGetter() {
   return localStorage.getItem("issueTrackerToken");
@@ -43,6 +48,10 @@ export function tokenGetter() {
     FormsModule,
     HttpClientModule,
     MatTableModule,
+    MatExpansionModule,
+   MatInputModule,
+    MatSortModule,
+    MatPaginatorModule,
     ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {
