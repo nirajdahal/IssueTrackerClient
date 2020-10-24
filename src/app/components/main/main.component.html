@@ -9,19 +9,21 @@
       <li class="active">
         <a href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <i class="fas fa-project-diagram"></i>
-         Ticket
+          Ticket
         </a>
         <ul class="collapse list-unstyled" id="ProjectSubmenu">
           <li>
             <a [routerLink]="['/home/ticket/gettickets']">All Tickets</a>
           </li>
           <li>
-            <a [routerLink]="['/home/profile']">My Tickets</a>
+            <a [routerLink]="['/home/ticket/mytickets']">My Tickets</a>
           </li>
           <li>
             <a [routerLink]="['/home/ticket/create']">Create</a>
           </li>
-
+          <li>
+            <a [routerLink]="['/home/ticket/updateTicket']">Update Ticket</a>
+          </li>
         </ul>
       </li>
     </ul>

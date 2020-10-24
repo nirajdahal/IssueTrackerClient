@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateTicketComponent implements OnInit {
 
+  ticketId: string = "";
+  priorityId: string = "";
+  projectId: string = "";
+  ticketTitle: string = "";
+  ticketDescription: string = "";
+
+  selection=[];
   constructor() { }
 
   ngOnInit(): void {

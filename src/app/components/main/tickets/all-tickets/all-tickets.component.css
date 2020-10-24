@@ -1,16 +1,15 @@
+input{
+  border-radius: 0px;
+}
 table {
   width: 100%;
   overflow-x: scroll;
-
-
 }
-
 tr.ticket-detail-row {
   height: 0;
   overflow: hidden;
 
 }
-
 tr.ticket-element-row:not(.ticket-expanded-row):hover {
   background: whitesmoke;
 }

@@ -2,7 +2,6 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetAllTicketVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
-import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
@@ -24,9 +23,7 @@ export class AllTicketsComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   expandedDetail:any;
   constructor(private ticketService: TicketsService) {
-
   }
-
   ngOnInit() {
     this.getAllOwners();
     this.dataSource.filterPredicate = (data, filter) => {
@@ -35,7 +32,6 @@ export class AllTicketsComponent implements OnInit {
       return dataStr.indexOf(filter) != -1;
     }
   }
-
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
@@ -50,5 +46,3 @@ export class AllTicketsComponent implements OnInit {
       })
   }
 }
-
-

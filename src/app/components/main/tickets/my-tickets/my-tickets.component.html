@@ -1,1 +1,135 @@
-<p>my-tickets works!</p>
+<div class="text-center mt-2">
+    <mat-form-field>
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search For Tickets">
+    </mat-form-field>
+</div>
+<div class=" p-lg-4">
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Ticket </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.Title}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="project">
+            <th mat-header-cell *matHeaderCellDef> Project </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.ProjectVm.Title}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="manager">
+            <th mat-header-cell *matHeaderCellDef> P. Manager </th>
+            <td mat-cell *matCellDef="let element">
+                <div *ngFor="let user of element.UsersTicketsVm">
+                    <span *ngIf="user.ApplicationUser.userRole=='Admin'">
+                        {{user.ApplicationUser.userName}},&nbsp;<br></span>
+                </div>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef> Priority</th>
+            <td mat-cell *matCellDef="let element"> {{element.TicketPriorityVm.Name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.TicketStatusVm.Name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.TicketTypeVm.Name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button>
+                    Edit
+                </button>
+            </td>
+        </ng-container>
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="ticket-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="container mt-2 mb-2">
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Ticket :</b>
+                            </div>
+                            <div class="col-9 col-lg-10  pl-lg-0 text-left">
+                                {{element.Title}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Project :</b>
+                            </div>
+                            <div class="col-9 col-lg-10  pl-lg-0 text-left">
+                                {{element.ProjectVm.Title}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Details :</b>
+                            </div>
+                            <div class="col-9 col-lg-10  pl-lg-0 text-left">
+                                {{element.Description}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Developers :</b>
+                            </div>
+                            <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
+                                <div *ngFor="let user of element.UsersTicketsVm">
+                                    <span *ngIf="user.ApplicationUser.userRole=='Developer'">
+                                        {{user.ApplicationUser.userName}},&nbsp;<br></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Created At :</b>
+                            </div>
+                            <div class="col-9 col-lg-10 pl-lg-0 text-left">
+                                {{element.CreatedAt | date}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Submitter :</b>
+                            </div>
+                            <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
+                                {{element.SubmittedByName}}, {{element.SubmittedByEmail}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Updated At :</b>
+                            </div>
+                            <div class="col-9 col-lg-10 pl-lg-0 text-left">
+                                {{element.UpdatedAt | date}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 col-lg-1 p-0 text-left">
+                                <b>Updater :</b>
+                            </div>
+                            <div class="col-9 col-lg-10  pl-lg-0 text-left">
+                                {{element.UpdatedByName}}, {{element.UpdatedByEmail}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="ticket-element-row"
+            [class.ticket-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="ticket-detail-row"></tr>
+    </table>
+    <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+    </mat-paginator>
+</div>

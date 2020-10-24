@@ -1,3 +1,5 @@
+import { UserTicket } from '../UserTicket/UserTicketModel';
+
 export class TicketForCreation {
     Title: string;
     Description: string;
@@ -29,11 +31,11 @@ export class GetAllTicketVmDto {
     TicketStatusVm: TicketStatusVmDto;
     TicketPriorityVm: TicketPriorityVmDto;
     ProjectVm: ProjectForTicketDto;
-    UsersTicketsVm : UserTicketVmDto[];
+    UsersTicketsVm: UserTicketVmDto[];
     CreatedAt: Date;
     DateTime: Date;
 }
-export class UserTicketVmDto{
+export class UserTicketVmDto {
     Id: string;
     ApplicationUser: ApplicationUserVm
 }
@@ -42,8 +44,22 @@ export class ApplicationUserVm {
     userEmail: string;
     userRole: string[]
 }
-export class ProjectForTicketDto
-{
-    Id:string;
-    Title:string;
+export class ProjectForTicketDto {
+    Id: string;
+    Title: string;
+}
+
+export class TicketForUpdateDto {
+
+    Title: string;
+    Description: string;
+    UpdatedByName: string;
+    UpdatedByEmail: string;
+    SubmittedByName: string;
+    SubmittedByEmail: string;
+    TTypeId: string;
+    TPriorityId: string;
+    ProjectId: string;
+    UpdatedAt :Date;
+    UserTicket:UserTicket[];
 }

@@ -1,3 +1,8 @@
+<div class="text-center mt-2">
+    <mat-form-field>
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search For Tickets">
+    </mat-form-field>
+</div>
 <div class=" p-lg-4">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
         <ng-container matColumnDef="name">
