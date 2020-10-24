@@ -22,6 +22,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import {MatPaginatorModule } from '@angular/material/paginator';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 export function tokenGetter() {
@@ -52,6 +53,7 @@ export function tokenGetter() {
    MatInputModule,
     MatSortModule,
     MatPaginatorModule,
+    NgMultiSelectDropDownModule.forRoot(),
     ToastrModule.forRoot(),
     JwtModule.forRoot({
       config: {

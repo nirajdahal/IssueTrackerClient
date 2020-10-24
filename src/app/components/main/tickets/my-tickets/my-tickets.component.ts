@@ -1,8 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { GetAllTicketVmDto } from 'src/app/models/Tickets/Ticket';
+import { TokenVal } from 'src/app/models/TokenModel';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 @Component({
   selector: 'app-my-tickets',
@@ -17,13 +19,12 @@ import { TicketsService } from 'src/app/services/Tickets/tickets.service';
   ]
 })
 export class MyTicketsComponent implements OnInit {
-
   //Columns names, table data from datasource, pagination and sorting
   columnsToDisplay: string[] = ['name', 'project', 'manager', 'priority', 'status', 'type', 'edit'];
   dataSource = new MatTableDataSource<GetAllTicketVmDto>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   expandedDetail: any;
-  constructor(private ticketService: TicketsService) {
+  constructor(private ticketService: TicketsService, private jwtHelper: JwtHelperService) {
   }
   ngOnInit() {
     this.getTicketsForUser();
@@ -39,11 +40,29 @@ export class MyTicketsComponent implements OnInit {
   public doFilter = (value: string) => {
     this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
+  tokenVal: TokenVal;
   public getTicketsForUser = () => {
-    this.ticketService.getMyTickets("fbb923e9-10c9-44c3-aada-6b88e742cc8d")
-      .subscribe(res => {
-        this.dataSource.data = res as GetAllTicketVmDto[];
-        console.log(this.dataSource.data)
-      })
+    var token = localStorage.getItem("issueTrackerToken")
+    if (token !== null) {
+      this.tokenVal = this.jwtHelper.decodeToken(token);
+      var userId = this.tokenVal.UserID;
+      this.ticketService.getMyTickets(userId)
+        .subscribe(res => {
+          this.dataSource.data = res as GetAllTicketVmDto[];
+          console.log(this.dataSource.data)
+        })
+    }
   }
+
+  userInfoToSend:GetAllTicketVmDto;
+  loadUpdateTicket:boolean = false;
+  editButton(id){
+    //selecting the ticket with its id
+    var userTickets = this.dataSource.data;
+    var dataToSend = userTickets.find(x => x.Id === id);
+    this.userInfoToSend = dataToSend;
+    this.loadUpdateTicket= true;
+  }
+
+
 }
