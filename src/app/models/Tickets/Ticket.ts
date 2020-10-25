@@ -47,8 +47,12 @@ export class ApplicationUserVm {
 export class ProjectForTicketDto {
     Id: string;
     Title: string;
+    ProjectManagers: ProjectManagerVmDto
 }
-
+export class ProjectManagerVmDto {
+    Id: string;
+    ApplicationUser: ApplicationUserVm
+}
 export class TicketForUpdateDto {
 
     Title: string;
@@ -60,6 +64,6 @@ export class TicketForUpdateDto {
     TTypeId: string;
     TPriorityId: string;
     ProjectId: string;
-    UpdatedAt :Date;
-    UserTicket:UserTicket[];
+    UpdatedAt: Date;
+    UserTicket: UserTicket[];
 }
