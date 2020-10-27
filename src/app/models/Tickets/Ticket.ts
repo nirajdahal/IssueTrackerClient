@@ -57,13 +57,8 @@ export class TicketForUpdateDto {
 
     Title: string;
     Description: string;
-    UpdatedByName: string;
-    UpdatedByEmail: string;
-    SubmittedByName: string;
-    SubmittedByEmail: string;
     TTypeId: string;
     TPriorityId: string;
     ProjectId: string;
-    UpdatedAt: Date;
     UserTicket: UserTicket[];
 }

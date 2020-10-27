@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
-import { GetAllTicketVmDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
+import { GetAllTicketVmDto, TicketForUpdateDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { UserVm } from 'src/app/models/User';
+import { UserTicket } from 'src/app/models/UserTicket/UserTicketModel';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -12,6 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UpdateTicketComponent implements OnInit {
   ticketId: string = "";
+  typeId: string = ""
   priorityId: string = "";
   statusId: string = "";
   projectId: string = "";
@@ -27,7 +29,7 @@ export class UpdateTicketComponent implements OnInit {
   showTicketPriority: boolean = false;
   //dropDown
   dropdownList: UserVm[] = [];
-  selectedItems: UserVm[] = [];
+  selectedDevelopers: UserVm[] = [];
   dropdownSettings: IDropdownSettings = {};
   @Input() userTicketInformation: GetAllTicketVmDto;
   usersTicket: UserTicketVmDto[];
@@ -41,6 +43,10 @@ export class UpdateTicketComponent implements OnInit {
     this.ticketTitle = userInfo.Title;
     this.ticketDescription = userInfo.Description;
     this.createdAt = userInfo.CreatedAt;
+    this.typeId = userInfo.TicketTypeVm.Id;
+    this.priorityId = userInfo.TicketPriorityVm.Id;
+    this.statusId = userInfo.TicketStatusVm.Id;
+    this.projectId = userInfo.ProjectVm.Id;
     this.submittedBy = ` ${userInfo.SubmittedByName}, ${userInfo.SubmittedByEmail}`
     this.usersTicket = userInfo.UsersTicketsVm;
     this.getDevelopers();
@@ -98,8 +104,6 @@ export class UpdateTicketComponent implements OnInit {
         }
       });
   }
-  UpdateTicket() {
-  }
   onItemSelect(item: any) {
     console.log(item);
   }
@@ -110,7 +114,6 @@ export class UpdateTicketComponent implements OnInit {
     this.userService.getAllDevelopers().subscribe(developersList => {
       //setting the multiple dropdownlist with all the developers
       this.dropdownList = developersList;
-
       //the code below helps us populate the selected items in multiple dropdown list
       var developers = this.userTicketInformation.UsersTicketsVm;
       var developerToSelect = [];
@@ -118,12 +121,28 @@ export class UpdateTicketComponent implements OnInit {
         var developerToBeAdded: UserVm = { Id: developer.Id, Name: developer.ApplicationUser.userName };
         developerToSelect.push(developerToBeAdded);
       });
-      this.selectedItems = developerToSelect;
+      this.selectedDevelopers = developerToSelect;
     }
     );
   }
+  ticketToUpdate: TicketForUpdateDto;
+  updateTicket() {
 
-  updateTicket(){
-
+    var userTicketToUpdate: UserTicket[] = [];
+    this.selectedDevelopers.forEach(e => {
+      userTicketToUpdate.push({
+        Id: e.Id,
+        TicketId: this.ticketId
+      })
+    })
+    this.ticketToUpdate = {
+      Title: this.ticketTitle,
+      Description: this.ticketDescription,
+      TTypeId: this.typeId,
+      TPriorityId: this.priorityId,
+      ProjectId: this.projectId,
+      UserTicket: userTicketToUpdate
+    }
+    console.log(this.ticketToUpdate);
   }
 }
