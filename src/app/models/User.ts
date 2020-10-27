@@ -10,3 +10,10 @@ export class LoginUser{
     Password:string;
 }
 
+export class UserVm
+{
+    Id :string
+    Name :string
+
+}
+

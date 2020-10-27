@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllTicketVmDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
+import { UserVm } from 'src/app/models/User';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-update-ticket',
   templateUrl: './update-ticket.component.html',
@@ -15,50 +17,37 @@ export class UpdateTicketComponent implements OnInit {
   projectId: string = "";
   ticketTitle: string = "";
   ticketDescription: string = "";
-  createdAt:Date= new Date();
-  submittedBy:string=""
+  createdAt: Date = new Date();
+  submittedBy: string = ""
   ticketTypeValues: TicketTypeVmDto[] = [];
   ticketPriority: TicketPriorityVmDto[] = [];
   ticketStatus: TicketStatusVmDto[] = [];
-
   showTicketType: boolean = false;
   showTicketStatus: boolean = false;
   showTicketPriority: boolean = false;
   //dropDown
-  dropdownList = [];
-  selectedItems = [];
+  dropdownList: UserVm[] = [];
+  selectedItems: UserVm[] = [];
   dropdownSettings: IDropdownSettings = {};
   @Input() userTicketInformation: GetAllTicketVmDto;
   usersTicket: UserTicketVmDto[];
-  constructor(private ticketService: TicketsService, private toastr: ToastrService) { }
+  developerList: UserVm[];
+  constructor(private ticketService: TicketsService, private toastr: ToastrService, private userService: UserService) { }
   ngOnInit(): void {
-
     this.getTicketPriority();
     this.getTicketTypes();
     this.getTicketStatus();
-
     let userInfo = this.userTicketInformation;
     this.ticketTitle = userInfo.Title;
     this.ticketDescription = userInfo.Description;
     this.createdAt = userInfo.CreatedAt;
     this.submittedBy = ` ${userInfo.SubmittedByName}, ${userInfo.SubmittedByEmail}`
     this.usersTicket = userInfo.UsersTicketsVm;
-    //multiple select options settings
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ];
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
+    this.getDevelopers();
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'Id',
+      textField: 'Name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -66,7 +55,6 @@ export class UpdateTicketComponent implements OnInit {
     };
   }
   ngAfterViewInit(): void {
-    console.log(this.userTicketInformation);
   }
   getTicketTypes() {
     this.ticketService.getTicketType().subscribe(data => {
@@ -117,5 +105,25 @@ export class UpdateTicketComponent implements OnInit {
   }
   onSelectAll(items: any) {
     console.log(items);
+  }
+  getDevelopers() {
+    this.userService.getAllDevelopers().subscribe(developersList => {
+      //setting the multiple dropdownlist with all the developers
+      this.dropdownList = developersList;
+
+      //the code below helps us populate the selected items in multiple dropdown list
+      var developers = this.userTicketInformation.UsersTicketsVm;
+      var developerToSelect = [];
+      developers.forEach(developer => {
+        var developerToBeAdded: UserVm = { Id: developer.Id, Name: developer.ApplicationUser.userName };
+        developerToSelect.push(developerToBeAdded);
+      });
+      this.selectedItems = developerToSelect;
+    }
+    );
+  }
+
+  updateTicket(){
+
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { LoginUser, RegisterUser } from '../models/User';
+import { LoginUser, RegisterUser, UserVm } from '../models/User';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TokenVal } from '../models/TokenModel';
 @Injectable({
@@ -38,5 +38,10 @@ export class UserService {
       localStorage.removeItem('issueTrackerToken');
       return true;
     }
+  }
+
+  getAllDevelopers(){
+    var res = this.http.get<UserVm[]>(this.BaseURI + '/user/developers');
+    return res;
   }
 }
