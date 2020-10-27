@@ -18,7 +18,7 @@ export class CreateTicketComponent implements OnInit {
   showTicketStatus: boolean = false;
   showTicketPriority: boolean = false;
   showProjectIdName: boolean = false;
-  ticketId: string = "";
+  typeId: string = "";
   priorityId: string = "";
   projectId: string = "";
   ticketTitle: string = "";
@@ -73,14 +73,29 @@ export class CreateTicketComponent implements OnInit {
   }
   createTicket() {
     this.ticketForCreation = {
-      "TTypeId": this.ticketId,
+      "TTypeId": this.typeId,
       "TPriorityId": this.priorityId,
       "Title": this.ticketTitle,
       "Description": this.ticketDescription,
       "ProjectId": this.projectId
     }
+    console.log(this.ticketForCreation)
     this.ticketService.createTicket(this.ticketForCreation).subscribe(data => {
-      console.log(data)
+      console.log(data);
+      this.toastr.success("Tciket Created Sucessfully", "Success!");
+      this.ticketTitle="";
+      this.ticketDescription = "";
+    },
+    (err) => {
+      if (err.status == 400) {
+        this.toastr.warning("Sorry the ticket data is not valid", 'Failed!');
+      }
+      if (err.status == 401) {
+        this.toastr.warning("Admin hasnot verified your account. Update Fail", 'Unauthorized!');
+      }
+      else {
+        this.toastr.error("Ticket Creation Failed", 'Sorry!');
+      }
     });
   }
 }

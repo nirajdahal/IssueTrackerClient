@@ -2,16 +2,17 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
-body {
+
+*{
     font-family: 'Nunito', sans-serif;
+
+}
+
+body {
     background: #fafafa;
 }
 p {
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.1em;
-    font-weight: 300;
-    line-height: 1.7em;
-    color: #999;
+    color: black;
 }
 a, a:hover, a:focus {
     color: inherit;
@@ -227,5 +228,10 @@ a.article, a.article:hover {
 }
 
 input{
+    border-radius: 0px;
+}
+
+
+select{
     border-radius: 0px;
 }

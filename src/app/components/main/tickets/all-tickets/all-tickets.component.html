@@ -44,7 +44,7 @@
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
             <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-                <div class="ticket-element-detail"
+                <div class="ticket-element-detail m-2"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="container mt-2 mb-2">
                         <div class="row">
@@ -125,6 +125,6 @@
         </tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="ticket-detail-row"></tr>
     </table>
-    <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+    <mat-paginator [pageSize]="6" [pageSizeOptions]="[2, 4, 6, 10, 20]">
     </mat-paginator>
 </div>

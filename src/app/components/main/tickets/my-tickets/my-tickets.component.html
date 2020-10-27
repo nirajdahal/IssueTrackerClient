@@ -41,15 +41,15 @@
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
                 <button (click)="editButton(element.Id)" type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#exampleModal">
-                    Launch
+                    data-target="#exampleModal" data-backdrop='static' data-keyboard='false'>
+                    Update
                 </button>
             </td>
         </ng-container>
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
             <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-                <div class="ticket-element-detail"
+                <div class="ticket-element-detail m-2"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="container mt-2 mb-2">
                         <div class="row">
@@ -83,7 +83,7 @@
                             <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
                                 <div *ngFor="let user of element.UsersTicketsVm">
                                     <span *ngIf="user.ApplicationUser.userRole=='Developer'">
-                                        {{user.ApplicationUser.userName}},&nbsp;<br></span>
+                                        {{user.ApplicationUser.userName}}, </span>
                                 </div>
                             </div>
                         </div>
@@ -130,7 +130,7 @@
         </tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="ticket-detail-row"></tr>
     </table>
-    <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 4, 6, 10, 20]">
+    <mat-paginator [pageSize]="6" [pageSizeOptions]="[2, 4, 6, 10, 20]">
     </mat-paginator>
 </div>
 <!-- Button trigger modal -->
@@ -138,9 +138,9 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content  rounded-0">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -150,10 +150,7 @@
                     <app-update-ticket [userTicketInformation]="userInfoToSend"></app-update-ticket>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+
         </div>
     </div>
 </div>

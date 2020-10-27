@@ -23,8 +23,7 @@ const routes: Routes = [
       { path: 'profile', component: UserprofileComponent },
       { path: 'ticket/create', component: CreateTicketComponent },
       { path: 'ticket/gettickets', component: AllTicketsComponent },
-      { path: 'ticket/mytickets', component: MyTicketsComponent },
-      { path: 'ticket/updateTicket', component: UpdateTicketComponent }
+      { path: 'ticket/mytickets', component: MyTicketsComponent }
     ]
   }
 ];

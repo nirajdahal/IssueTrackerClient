@@ -28,7 +28,8 @@ export class TicketsService {
   getMyTickets(id: String) {
     return this.http.get<GetAllTicketVmDto[]>(this.BaseURI + '/userticket/' + id, this.httpHeader);
   }
-  updateMyTickets(id: String) {
-    return this.http.put<TicketForUpdateDto[]>(this.BaseURI + '/ticket/' + id, this.httpHeader);
+  updateMyTickets(id: String, data:TicketForUpdateDto) {
+    var payload = data;
+    return this.http.put<TicketForUpdateDto>(this.BaseURI + '/ticket/' + id, payload,this.httpHeader);
   }
 }

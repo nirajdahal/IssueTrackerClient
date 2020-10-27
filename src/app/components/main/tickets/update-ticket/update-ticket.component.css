@@ -1,0 +1,24 @@
+input{
+    border-radius: 0px;
+}
+
+
+select{
+    border-radius: 0px;
+}
+
+textarea{
+    border-radius: 0px;
+}
+
+p{
+    font-size: 14px;
+  }
+
+  ng-multiselect-dropdown {
+      border-radius: 0;
+  }
+
+  span.selected-item ng-star-inserted{
+      background-color: brown;
+  }

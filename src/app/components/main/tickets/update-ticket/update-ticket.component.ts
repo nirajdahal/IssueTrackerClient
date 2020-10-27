@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllTicketVmDto, TicketForUpdateDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
@@ -17,6 +18,7 @@ export class UpdateTicketComponent implements OnInit {
   priorityId: string = "";
   statusId: string = "";
   projectId: string = "";
+  priorityName: string = "";
   ticketTitle: string = "";
   ticketDescription: string = "";
   createdAt: Date = new Date();
@@ -34,18 +36,24 @@ export class UpdateTicketComponent implements OnInit {
   @Input() userTicketInformation: GetAllTicketVmDto;
   usersTicket: UserTicketVmDto[];
   developerList: UserVm[];
-  constructor(private ticketService: TicketsService, private toastr: ToastrService, private userService: UserService) { }
+  typeName: string;
+  statusName: string;
+  constructor(  private router: Router,private ticketService: TicketsService, private toastr: ToastrService, private userService: UserService) { }
   ngOnInit(): void {
     this.getTicketPriority();
     this.getTicketTypes();
     this.getTicketStatus();
     let userInfo = this.userTicketInformation;
     this.ticketTitle = userInfo.Title;
+    this.ticketId = userInfo.Id;
     this.ticketDescription = userInfo.Description;
     this.createdAt = userInfo.CreatedAt;
     this.typeId = userInfo.TicketTypeVm.Id;
+    this.typeName = userInfo.TicketTypeVm.Name;
     this.priorityId = userInfo.TicketPriorityVm.Id;
+    this.priorityName = userInfo.TicketPriorityVm.Name;
     this.statusId = userInfo.TicketStatusVm.Id;
+    this.statusName = userInfo.TicketStatusVm.Name;
     this.projectId = userInfo.ProjectVm.Id;
     this.submittedBy = ` ${userInfo.SubmittedByName}, ${userInfo.SubmittedByEmail}`
     this.usersTicket = userInfo.UsersTicketsVm;
@@ -127,7 +135,6 @@ export class UpdateTicketComponent implements OnInit {
   }
   ticketToUpdate: TicketForUpdateDto;
   updateTicket() {
-
     var userTicketToUpdate: UserTicket[] = [];
     this.selectedDevelopers.forEach(e => {
       userTicketToUpdate.push({
@@ -141,8 +148,26 @@ export class UpdateTicketComponent implements OnInit {
       TTypeId: this.typeId,
       TPriorityId: this.priorityId,
       ProjectId: this.projectId,
-      UserTicket: userTicketToUpdate
+      UsersTickets: userTicketToUpdate
     }
     console.log(this.ticketToUpdate);
+    console.log(this.ticketId)
+
+    this.ticketService.updateMyTickets(this.ticketId, this.ticketToUpdate).subscribe(data => {
+      this.router.navigateByUrl("/home/ticket/mytickets");
+      this.toastr.success("Ticket has been updated successfully");
+
+    },
+      (err) => {
+        if (err.status == 400) {
+          this.toastr.warning("Sorry the update data is not valid", 'Failed!');
+        }
+        if (err.status == 401) {
+          this.toastr.warning("Admin hasnot verified your account. Update Fail", 'Unauthorized!');
+        }
+        else {
+          this.toastr.error("Update Failed", 'Sorry!');
+        }
+      })
   }
 }

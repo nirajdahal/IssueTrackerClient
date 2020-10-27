@@ -60,5 +60,5 @@ export class TicketForUpdateDto {
     TTypeId: string;
     TPriorityId: string;
     ProjectId: string;
-    UserTicket: UserTicket[];
+    UsersTickets: UserTicket[];
 }

@@ -13,15 +13,15 @@
     <div class="row">
         <div class="col-12 col-lg-4 mt-2">
             <label class="mr-sm-2" for="ticketTypes">Ticket Types</label>
-            <select [(ngModel)]="ticketId" class="custom-select mr-sm-2" id="ticketTypes">
-                <option *ngFor="let ticketTypeValue of ticketTypeValues" value="{{ticketTypeValue.id}}">
+            <select [(ngModel)]="typeId" class="custom-select mr-sm-2" id="ticketTypes">
+                <option *ngFor="let ticketTypeValue of ticketTypeValues" value="{{ticketTypeValue.Id}}">
                     {{ticketTypeValue.Name}}</option>
             </select>
         </div>
         <div class="col-12 col-lg-4 mt-2">
             <label class="mr-sm-2" for="ticketTypes">Ticket Priority</label>
             <select [(ngModel)]="priorityId" class="custom-select mr-sm-2" id="ticketPriority">
-                <option *ngFor="let ticketPriorityValue of ticketPriority" value="{{ticketPriorityValue.id}}">
+                <option *ngFor="let ticketPriorityValue of ticketPriority" value="{{ticketPriorityValue.Id}}">
                     {{ticketPriorityValue.Name}}</option>
             </select>
         </div>
@@ -29,7 +29,7 @@
             <label class="mr-sm-2" for="ticketTypes">Project</label>
             <select [(ngModel)]="projectId" class="custom-select mr-sm-2" id="ticketPriority">
                 <option *ngFor="let ticketProjectIdNameValue of ticketProjectIdName"
-                    value="{{ticketProjectIdNameValue.id}}">
+                    value="{{ticketProjectIdNameValue.Id}}">
                     {{ticketProjectIdNameValue.Title}}</option>
             </select>
         </div>
