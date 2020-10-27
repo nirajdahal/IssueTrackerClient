@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
 import { GetAllTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { TokenVal } from 'src/app/models/TokenModel';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
@@ -20,11 +21,11 @@ import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 })
 export class MyTicketsComponent implements OnInit {
   //Columns names, table data from datasource, pagination and sorting
-  columnsToDisplay: string[] = ['name', 'project', 'manager', 'priority', 'status', 'type', 'edit'];
+  columnsToDisplay: string[] = ['name', 'project', 'manager', 'priority', 'status', 'type', 'delete', 'edit'];
   dataSource = new MatTableDataSource<GetAllTicketVmDto>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   expandedDetail: any;
-  constructor(private ticketService: TicketsService, private jwtHelper: JwtHelperService) {
+  constructor(private ticketService: TicketsService, private jwtHelper: JwtHelperService, private toastr: ToastrService) {
   }
   ngOnInit() {
     this.getTicketsForUser();
@@ -53,16 +54,37 @@ export class MyTicketsComponent implements OnInit {
         })
     }
   }
-
-  userInfoToSend:GetAllTicketVmDto;
-  loadUpdateTicket:boolean = false;
-  editButton(id){
+  userInfoToSend: GetAllTicketVmDto;
+  loadUpdateTicket: boolean = false;
+  editTicket(id) {
     //selecting the ticket with its id
     var userTickets = this.dataSource.data;
     var dataToSend = userTickets.find(x => x.Id === id);
     this.userInfoToSend = dataToSend;
-    this.loadUpdateTicket= true;
+    this.loadUpdateTicket = true;
+  }
+  ticketTodeleteId = "";
+  getTicketToDelete(Id) {
+    this.ticketTodeleteId = Id;
+  }
+  deleteTicket() {
+    console.log(this.ticketTodeleteId);
+    // this.ticketService.deleteMyTickets(this.ticketTodeleteId);
+    this.ticketService.deleteMyTickets(this.ticketTodeleteId).subscribe(data => {
+      console.log(data);
+      this.toastr.success("Ticket Deleted Sucessfully", "Success!");
+      document.getElementById("deleteModalClose").click();
+    },
+    (err) => {
+
+      if (err.status == 401) {
+        this.toastr.warning("Can't Delelte as this ticket doesnot belong to you", 'Unauthorized!');
+      }
+      else {
+        this.toastr.error("Ticket Deletion Failed", 'Sorry!');
+      }
+      document.getElementById("deleteModalClose").click();
+    });
+  }
   }
 
-
-}

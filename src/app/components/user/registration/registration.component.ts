@@ -92,8 +92,9 @@ export class RegistrationComponent implements OnInit {
     this.userService.login(this.loginModel).subscribe((res: any) => {
       console.log(res);
       localStorage.setItem("issueTrackerToken", res.token);
+      this.router.navigate(['/home']);
       this.toastr.success("Login Sucessful", 'Thank You!');
-      this.router.navigateByUrl("/home/");
+
     },
       (err) => {
         if (err.status == 400) {

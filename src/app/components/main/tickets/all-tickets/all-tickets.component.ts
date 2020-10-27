@@ -4,6 +4,7 @@ import { GetAllTicketVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticke
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-all-tickets',
   templateUrl: './all-tickets.component.html',
@@ -18,11 +19,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 export class AllTicketsComponent implements OnInit {
   //Columns names, table data from datasource, pagination and sorting
-  columnsToDisplay: string[] = ['name','project','manager', 'priority', 'status','type','more'];
+  columnsToDisplay: string[] = ['name', 'project', 'manager', 'priority', 'status', 'type', 'delete', 'more'];
   dataSource = new MatTableDataSource<GetAllTicketVmDto>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  expandedDetail:any;
-  constructor(private ticketService: TicketsService) {
+  expandedDetail: any;
+  constructor(private ticketService: TicketsService, private toastr: ToastrService) {
   }
   ngOnInit() {
     this.getAllOwners();
@@ -44,5 +45,29 @@ export class AllTicketsComponent implements OnInit {
         this.dataSource.data = res as GetAllTicketVmDto[];
         console.log(this.dataSource.data)
       })
+  }
+
+  ticketTodeleteId = "";
+  getTicketToDelete(Id) {
+    this.ticketTodeleteId = Id;
+  }
+  deleteTicket() {
+    console.log(this.ticketTodeleteId);
+
+    this.ticketService.deleteMyTickets(this.ticketTodeleteId).subscribe(data => {
+      console.log(data);
+      this.toastr.success("Ticket Deleted Sucessfully", "Success!");
+      document.getElementById("deleteModalClose").click();
+    },
+      (err) => {
+
+        if (err.status == 401) {
+          this.toastr.warning("Can't Delelte as this ticket doesnot belong to you", 'Unauthorized!');
+        }
+        else {
+          this.toastr.error("Ticket Deletion Failed", 'Sorry!');
+        }
+        document.getElementById("deleteModalClose").click();
+      });
   }
 }

@@ -37,19 +37,28 @@
             <th mat-header-cell *matHeaderCellDef> Type </th>
             <td mat-cell *matCellDef="let element"> {{element.TicketTypeVm.Name}} </td>
         </ng-container>
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button (click)="getTicketToDelete(element.Id)" type="button" class="bg-transparent border-0 text-danger" data-toggle="modal"
+                    data-target="#deleteModal" data-backdrop='static' data-keyboard='false'>
+                    <i class="fas fa-trash-alt fa-lg"></i>
+                </button>
+            </td>
+        </ng-container>
         <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
-                <button (click)="editButton(element.Id)" type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#exampleModal" data-backdrop='static' data-keyboard='false'>
-                    Update
+                <button (click)="editTicket(element.Id)" type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#editModal" data-backdrop='static' data-keyboard='false'>
+                    Edit
                 </button>
             </td>
         </ng-container>
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
             <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-                <div class="ticket-element-detail m-2"
+                <div class="ticket-element-detail"
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="container mt-2 mb-2">
                         <div class="row">
@@ -134,8 +143,8 @@
     </mat-paginator>
 </div>
 <!-- Button trigger modal -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- Modal FOR Editing Ticket -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content  rounded-0">
@@ -154,3 +163,25 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal For Deleting Ticket -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete the ticket?
+        </div>
+        <div class="modal-footer">
+          <button id="deleteModalClose" type="button" class="btn-dark" data-dismiss="modal">Close</button>
+          <button type="button" class="btn-danger" (click)="deleteTicket()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
