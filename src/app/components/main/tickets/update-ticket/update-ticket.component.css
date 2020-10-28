@@ -18,7 +18,6 @@ p{
   ng-multiselect-dropdown {
       border-radius: 0;
   }
-
-  span.selected-item ng-star-inserted{
-      background-color: brown;
+  .removeBor{
+      border-radius: 0;
   }

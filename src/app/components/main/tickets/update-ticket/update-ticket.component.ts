@@ -4,7 +4,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllTicketVmDto, TicketForUpdateDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { UserVm } from 'src/app/models/User';
-import { UserTicket } from 'src/app/models/UserTicket/UserTicketModel';
+import { ProjectManager, UserTicket } from 'src/app/models/UserTicket/UserTicketModel';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -30,15 +30,19 @@ export class UpdateTicketComponent implements OnInit {
   showTicketStatus: boolean = false;
   showTicketPriority: boolean = false;
   //dropDown
-  dropdownList: UserVm[] = [];
+  developerDropdownList: UserVm[] = [];
   selectedDevelopers: UserVm[] = [];
-  dropdownSettings: IDropdownSettings = {};
+  developerDropdownSettings: IDropdownSettings = {};
+  managerDropdownList: UserVm[] = [];
+  selectedManagers: UserVm[] = [];
+  // managerDropdownSettings: IDropdownSettings = {};
   @Input() userTicketInformation: GetAllTicketVmDto;
   usersTicket: UserTicketVmDto[];
   developerList: UserVm[];
   typeName: string;
   statusName: string;
-  constructor(  private router: Router,private ticketService: TicketsService, private toastr: ToastrService, private userService: UserService) { }
+  currentUserRole = "";
+  constructor(private router: Router, private ticketService: TicketsService, private toastr: ToastrService, private userService: UserService) { }
   ngOnInit(): void {
     this.getTicketPriority();
     this.getTicketTypes();
@@ -58,7 +62,8 @@ export class UpdateTicketComponent implements OnInit {
     this.submittedBy = ` ${userInfo.SubmittedByName}, ${userInfo.SubmittedByEmail}`
     this.usersTicket = userInfo.UsersTicketsVm;
     this.getDevelopers();
-    this.dropdownSettings = {
+    this.getProjectManagers();
+    this.developerDropdownSettings = {
       singleSelection: false,
       idField: 'Id',
       textField: 'Name',
@@ -67,6 +72,8 @@ export class UpdateTicketComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+    this.currentUserRole = this.userService.userRole();
+    console.log(this.currentUserRole);
   }
   ngAfterViewInit(): void {
   }
@@ -121,7 +128,7 @@ export class UpdateTicketComponent implements OnInit {
   getDevelopers() {
     this.userService.getAllDevelopers().subscribe(developersList => {
       //setting the multiple dropdownlist with all the developers
-      this.dropdownList = developersList;
+      this.developerDropdownList = developersList;
       //the code below helps us populate the selected items in multiple dropdown list
       var developers = this.userTicketInformation.UsersTicketsVm;
       var developerToSelect = [];
@@ -133,30 +140,54 @@ export class UpdateTicketComponent implements OnInit {
     }
     );
   }
+  getProjectManagers() {
+    this.userService.getProjectManagers().subscribe(managerList => {
+      //setting the multiple dropdownlist with all the developers
+      this.managerDropdownList = managerList;
+      //the code below helps us populate the selected items in multiple dropdown list
+      var managers = this.userTicketInformation.ProjectVm.ProjectManagers;
+      var managerToSelect = [];
+      managers.forEach(manager => {
+        var managerToBeAdded: UserVm = { Id: manager.Id, Name: manager.ApplicationUser.userName };
+        managerToSelect.push(managerToBeAdded);
+      });
+      this.selectedManagers = managerToSelect;
+      console.log(this.selectedManagers);
+    }
+    );
+  }
   ticketToUpdate: TicketForUpdateDto;
   updateTicket() {
     var userTicketToUpdate: UserTicket[] = [];
+    var projectManagerToUpdate: ProjectManager[] = [];
     this.selectedDevelopers.forEach(e => {
       userTicketToUpdate.push({
         Id: e.Id,
         TicketId: this.ticketId
       })
     })
+
+    var rolesAllowded = ["Admin", "Project Manager"].includes(this.currentUserRole)
+    if (rolesAllowded) {
+      this.selectedManagers.forEach(e => {
+        projectManagerToUpdate.push({
+          Id: e.Id,
+          ProjectId: this.projectId
+        })
+      })
+    }
     this.ticketToUpdate = {
       Title: this.ticketTitle,
       Description: this.ticketDescription,
       TTypeId: this.typeId,
       TPriorityId: this.priorityId,
       ProjectId: this.projectId,
-      UsersTickets: userTicketToUpdate
+      UsersTickets: userTicketToUpdate,
+      ProjectManagers: projectManagerToUpdate
     }
-    console.log(this.ticketToUpdate);
-    console.log(this.ticketId)
-
     this.ticketService.updateMyTickets(this.ticketId, this.ticketToUpdate).subscribe(data => {
       this.router.navigateByUrl("/home/ticket/mytickets");
       this.toastr.success("Ticket has been updated successfully");
-
     },
       (err) => {
         if (err.status == 400) {

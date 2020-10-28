@@ -23,6 +23,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import {MatPaginatorModule } from '@angular/material/paginator';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ChartsModule } from 'ng2-charts';
+import { TicketDashbaordComponent } from './components/main/tickets/ticket-dashbaord/ticket-dashbaord.component';
 
 
 export function tokenGetter() {
@@ -39,11 +41,13 @@ export function tokenGetter() {
     CreateTicketComponent,
     UpdateTicketComponent,
     AllTicketsComponent,
-    MyTicketsComponent
+    MyTicketsComponent,
+    TicketDashbaordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ChartsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,

@@ -7,7 +7,6 @@ import { TokenVal } from '../models/TokenModel';
   providedIn: 'root'
 })
 export class UserService {
-
   readonly BaseURI = 'https://localhost:44392/api';
   registerUser: RegisterUser;
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
@@ -23,7 +22,7 @@ export class UserService {
     return res;
   }
   tokenVal: TokenVal;
-  userRole(){
+  userRole() {
     var token = localStorage.getItem("issueTrackerToken")
     if (token !== null) {
       this.tokenVal = this.jwtHelper.decodeToken(token);
@@ -31,17 +30,20 @@ export class UserService {
       return role;
     }
   }
-
-  accessMainComponent(){
-    var usersRoles = ["Admin","Submitter", "Developer", "ProjectManager"];
-    if(!usersRoles.includes(this.userRole())){
+  accessMainComponent() {
+    var usersRoles = ["Admin", "Submitter", "Developer", "Project Manager"];
+    if (!usersRoles.includes(this.userRole())) {
       localStorage.removeItem('issueTrackerToken');
       return true;
     }
   }
-
-  getAllDevelopers(){
+  getAllDevelopers() {
     var res = this.http.get<UserVm[]>(this.BaseURI + '/user/developers');
     return res;
   }
+  getProjectManagers() {
+    var res = this.http.get<UserVm[]>(this.BaseURI + '/user/pmanagers');
+    return res;
+  }
+
 }

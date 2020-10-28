@@ -1,39 +1,46 @@
 <div class="container mt-3">
     <div class="row">
+
+
         <div class="col-12 col-lg-6 mt-1">
-            <label>Title</label>
-            <input [(ngModel)]="ticketTitle" class="form-control" type="text" placeholder="Ticket Title">
+            <div class="row">
+                <div class="col-12">
+                    <label>Title</label>
+                    <input [(ngModel)]="ticketTitle" class="form-control" type="text" placeholder="Ticket Title">
+                </div>
+
+                <div class="col-12  mt-2">
+                    <label class="mr-sm-2" for="ticketTypes">Ticket Types</label>
+                    <select [(ngModel)]="typeId" class="custom-select mr-sm-2" id="ticketTypes">
+                        <option *ngFor="let ticketTypeValue of ticketTypeValues" value="{{ticketTypeValue.Id}}">
+                            {{ticketTypeValue.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-12 mt-2">
+                    <label class="mr-sm-2" for="ticketTypes">Ticket Priority</label>
+                    <select [(ngModel)]="priorityId" class="custom-select mr-sm-2" id="ticketPriority">
+                        <option *ngFor="let ticketPriorityValue of ticketPriority" value="{{ticketPriorityValue.Id}}">
+                            {{ticketPriorityValue.Name}}</option>
+                    </select>
+                </div>
+                <div class="col-12 mt-1">
+                    <label class="mr-sm-2" for="ticketTypes">Project</label>
+                    <select [(ngModel)]="projectId" class="custom-select mr-sm-2" id="ticketPriority">
+                        <option *ngFor="let ticketProjectIdNameValue of ticketProjectIdName"
+                            value="{{ticketProjectIdNameValue.Id}}">
+                            {{ticketProjectIdNameValue.Title}}</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
         <div class="col-12 col-lg-6 mt-1">
             <label>Description</label>
-            <textarea [(ngModel)]="ticketDescription" class="form-control" rows="1"
+            <textarea [(ngModel)]="ticketDescription" class="form-control" rows="10"
                 placeholder="Ticket Description"></textarea>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-4 mt-2">
-            <label class="mr-sm-2" for="ticketTypes">Ticket Types</label>
-            <select [(ngModel)]="typeId" class="custom-select mr-sm-2" id="ticketTypes">
-                <option *ngFor="let ticketTypeValue of ticketTypeValues" value="{{ticketTypeValue.Id}}">
-                    {{ticketTypeValue.Name}}</option>
-            </select>
-        </div>
-        <div class="col-12 col-lg-4 mt-2">
-            <label class="mr-sm-2" for="ticketTypes">Ticket Priority</label>
-            <select [(ngModel)]="priorityId" class="custom-select mr-sm-2" id="ticketPriority">
-                <option *ngFor="let ticketPriorityValue of ticketPriority" value="{{ticketPriorityValue.Id}}">
-                    {{ticketPriorityValue.Name}}</option>
-            </select>
-        </div>
-        <div class="col-12 col-lg-4 mt-1">
-            <label class="mr-sm-2" for="ticketTypes">Project</label>
-            <select [(ngModel)]="projectId" class="custom-select mr-sm-2" id="ticketPriority">
-                <option *ngFor="let ticketProjectIdNameValue of ticketProjectIdName"
-                    value="{{ticketProjectIdNameValue.Id}}">
-                    {{ticketProjectIdNameValue.Title}}</option>
-            </select>
-        </div>
-    </div>
+
 </div>
 <div class="container">
     <div class="row">

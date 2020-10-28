@@ -9,6 +9,7 @@ import { CreateTicketComponent } from './components/main/tickets/create-ticket/c
 import { AllTicketsComponent } from './components/main/tickets/all-tickets/all-tickets.component';
 import { MyTicketsComponent } from './components/main/tickets/my-tickets/my-tickets.component';
 import { UpdateTicketComponent } from './components/main/tickets/update-ticket/update-ticket.component';
+import { TicketDashbaordComponent } from './components/main/tickets/ticket-dashbaord/ticket-dashbaord.component';
 const routes: Routes = [
   { path: '', redirectTo: '/user/registration', pathMatch: 'full' },
   {
@@ -23,7 +24,9 @@ const routes: Routes = [
       { path: 'profile', component: UserprofileComponent },
       { path: 'ticket/create', component: CreateTicketComponent },
       { path: 'ticket/gettickets', component: AllTicketsComponent },
-      { path: 'ticket/mytickets', component: MyTicketsComponent }
+      { path: 'ticket/mytickets', component: MyTicketsComponent },
+      { path: 'ticket/ticketdashboard', component: TicketDashbaordComponent }
+
     ]
   }
 ];

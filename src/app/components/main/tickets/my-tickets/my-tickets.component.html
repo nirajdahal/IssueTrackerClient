@@ -40,8 +40,9 @@
         <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
-                <button (click)="getTicketToDelete(element.Id)" type="button" class="bg-transparent border-0 text-danger" data-toggle="modal"
-                    data-target="#deleteModal" data-backdrop='static' data-keyboard='false'>
+                <button (click)="getTicketToDelete(element.Id)" type="button"
+                    class="bg-transparent border-0 text-danger" data-toggle="modal" data-target="#deleteModal"
+                    data-backdrop='static' data-keyboard='false'>
                     <i class="fas fa-trash-alt fa-lg"></i>
                 </button>
             </td>
@@ -144,17 +145,17 @@
 </div>
 <!-- Button trigger modal -->
 <!-- Modal FOR Editing Ticket -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content  rounded-0">
-            <div class="modal-header">
+
+            <div class="modal-body">
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
-            <div class="modal-body">
+
+                <p class="text-center"><b>Update Ticket</b></p>
                 <div *ngIf="loadUpdateTicket">
                     <app-update-ticket [userTicketInformation]="userInfoToSend"></app-update-ticket>
                 </div>
@@ -164,24 +165,24 @@
     </div>
 </div>
 
-
 <!-- Modal For Deleting Ticket -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the ticket?
+            </div>
+            <div class="modal-footer">
+                <button id="deleteModalClose" type="button" class="btn-dark" data-dismiss="modal">Close</button>
+                <button type="button" class="btn-danger" (click)="deleteTicket()">Yes</button>
+            </div>
         </div>
-        <div class="modal-body">
-          Are you sure you want to delete the ticket?
-        </div>
-        <div class="modal-footer">
-          <button id="deleteModalClose" type="button" class="btn-dark" data-dismiss="modal">Close</button>
-          <button type="button" class="btn-danger" (click)="deleteTicket()">Yes</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
