@@ -181,6 +181,7 @@ export class UpdateTicketComponent implements OnInit {
       Description: this.ticketDescription,
       TTypeId: this.typeId,
       TPriorityId: this.priorityId,
+      TStatusId:this.statusId,
       ProjectId: this.projectId,
       UsersTickets: userTicketToUpdate,
       ProjectManagers: projectManagerToUpdate

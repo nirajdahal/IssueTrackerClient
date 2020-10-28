@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { GetAllTicketVmDto, TicketForCreation, TicketForUpdateDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto } from 'src/app/models/Tickets/Ticket';
+import { DataForTicketDashboardVm, GetAllTicketVmDto, TicketForCreation, TicketForUpdateDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto } from 'src/app/models/Tickets/Ticket';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,9 +30,14 @@ export class TicketsService {
   }
   updateMyTickets(id: String, data:TicketForUpdateDto) {
     var payload = data;
+    console.log(data)
     return this.http.put<TicketForUpdateDto>(this.BaseURI + '/ticket/' + id, payload,this.httpHeader);
   }
   deleteMyTickets(id: String) {
     return this.http.delete(this.BaseURI + '/ticket/' + id, this.httpHeader);
   }
+  ticketDashboard() {
+    return this.http.get<DataForTicketDashboardVm>(this.BaseURI + '/ticket/dashboard', this.httpHeader);
+  }
+
 }

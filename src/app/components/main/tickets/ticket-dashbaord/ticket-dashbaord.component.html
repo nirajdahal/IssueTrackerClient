@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-6">
-            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            <canvas baseChart [data]="pieChartDataTypes" [labels]="pieChartLabelsTypes" [chartType]="pieChartType"
                 [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
             </canvas>
             <p class="text-center">Chart: Ticket Types</p>
         </div>
         <div class="col-12 col-lg-6">
-            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            <canvas baseChart [data]="pieChartDataPriority" [labels]="pieChartLabelsPriority" [chartType]="pieChartType"
                 [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
             </canvas>
             <p class="text-center">Chart: Ticket Types</p>
@@ -17,7 +17,7 @@
         <div class="col-3 col-lg-0 text-center ">
         </div>
         <div class="col-12 col-lg-6 text-center ">
-            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+            <canvas baseChart [data]="pieChartDataStatus" [labels]="pieChartLabelsStatus" [chartType]="pieChartType"
                 [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
             </canvas>
             <p class="text-center">Chart: Ticket Types</p>

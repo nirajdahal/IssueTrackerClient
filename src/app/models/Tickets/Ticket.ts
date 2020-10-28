@@ -1,5 +1,4 @@
 import { ProjectManager, UserTicket } from '../UserTicket/UserTicketModel';
-
 export class TicketForCreation {
     Title: string;
     Description: string;
@@ -54,12 +53,22 @@ export class ProjectManagerVmDto {
     ApplicationUser: ApplicationUserVm
 }
 export class TicketForUpdateDto {
-
     Title: string;
     Description: string;
     TTypeId: string;
     TPriorityId: string;
+    TStatusId:string;
     ProjectId: string;
     ProjectManagers?: ProjectManager[];
     UsersTickets: UserTicket[];
+}
+export class DataForTicketDashboardVm {
+    TicketPriorityData: DashboardDataForTicket[];
+    TicketTypeData: DashboardDataForTicket[];
+    TicketStatusData: DashboardDataForTicket[];
+    totalTickets: number
+}
+export class DashboardDataForTicket {
+    Name: string
+    Count: number
 }
