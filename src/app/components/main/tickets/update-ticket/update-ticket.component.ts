@@ -4,7 +4,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllTicketVmDto, TicketForUpdateDto, TicketPriorityVmDto, TicketStatusVmDto, TicketTypeVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { UserVm } from 'src/app/models/User';
-import { ProjectManager, UserTicket } from 'src/app/models/UserTicket/UserTicketModel';
+import { UserTicket } from 'src/app/models/UserTicket/UserTicketModel';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -33,9 +33,6 @@ export class UpdateTicketComponent implements OnInit {
   developerDropdownList: UserVm[] = [];
   selectedDevelopers: UserVm[] = [];
   developerDropdownSettings: IDropdownSettings = {};
-  managerDropdownList: UserVm[] = [];
-  selectedManagers: UserVm[] = [];
-  // managerDropdownSettings: IDropdownSettings = {};
   @Input() userTicketInformation: GetAllTicketVmDto;
   usersTicket: UserTicketVmDto[];
   developerList: UserVm[];
@@ -62,7 +59,6 @@ export class UpdateTicketComponent implements OnInit {
     this.submittedBy = ` ${userInfo.SubmittedByName}, ${userInfo.SubmittedByEmail}`
     this.usersTicket = userInfo.UsersTicketsVm;
     this.getDevelopers();
-    this.getProjectManagers();
     this.developerDropdownSettings = {
       singleSelection: false,
       idField: 'Id',
@@ -73,7 +69,6 @@ export class UpdateTicketComponent implements OnInit {
       allowSearchFilter: true
     };
     this.currentUserRole = this.userService.userRole();
-    console.log(this.currentUserRole);
   }
   ngAfterViewInit(): void {
   }
@@ -140,42 +135,16 @@ export class UpdateTicketComponent implements OnInit {
     }
     );
   }
-  getProjectManagers() {
-    this.userService.getProjectManagers().subscribe(managerList => {
-      //setting the multiple dropdownlist with all the developers
-      this.managerDropdownList = managerList;
-      //the code below helps us populate the selected items in multiple dropdown list
-      var managers = this.userTicketInformation.ProjectVm.ProjectManagers;
-      var managerToSelect = [];
-      managers.forEach(manager => {
-        var managerToBeAdded: UserVm = { Id: manager.Id, Name: manager.ApplicationUser.userName };
-        managerToSelect.push(managerToBeAdded);
-      });
-      this.selectedManagers = managerToSelect;
-      console.log(this.selectedManagers);
-    }
-    );
-  }
+
   ticketToUpdate: TicketForUpdateDto;
   updateTicket() {
     var userTicketToUpdate: UserTicket[] = [];
-    var projectManagerToUpdate: ProjectManager[] = [];
     this.selectedDevelopers.forEach(e => {
       userTicketToUpdate.push({
         Id: e.Id,
         TicketId: this.ticketId
       })
     })
-
-    var rolesAllowded = ["Admin", "Project Manager"].includes(this.currentUserRole)
-    if (rolesAllowded) {
-      this.selectedManagers.forEach(e => {
-        projectManagerToUpdate.push({
-          Id: e.Id,
-          ProjectId: this.projectId
-        })
-      })
-    }
     this.ticketToUpdate = {
       Title: this.ticketTitle,
       Description: this.ticketDescription,
@@ -183,8 +152,7 @@ export class UpdateTicketComponent implements OnInit {
       TPriorityId: this.priorityId,
       TStatusId:this.statusId,
       ProjectId: this.projectId,
-      UsersTickets: userTicketToUpdate,
-      ProjectManagers: projectManagerToUpdate
+      UsersTickets: userTicketToUpdate
     }
     this.ticketService.updateMyTickets(this.ticketId, this.ticketToUpdate).subscribe(data => {
       this.router.navigateByUrl("/home/ticket/mytickets");

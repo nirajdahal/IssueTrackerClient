@@ -10,7 +10,9 @@ import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 })
 export class TicketDashbaordComponent implements OnInit {
 
-  // Pie
+
+  totalTicketsNumber:number = 0;
+  // Pie charts
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -34,6 +36,7 @@ export class TicketDashbaordComponent implements OnInit {
       this.ticketTypeData(data.TicketTypeData);
       this.ticketPriorityData(data.TicketPriorityData);
       this.ticketStatusData(data.TicketStatusData);
+      this.totalTicketsNumber = data.totalTickets;
     })
   }
 

@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <label>Title</label>
+                    <input [(ngModel)]="projectTitle" class="form-control" type="text" placeholder="Project Title">
+                </div>
+                <div class="col-12 mt-2">
+                    <label>Project Managers</label>
+                    <ng-multiselect-dropdown *ngIf="managerDropdownList" [placeholder]="'Managers'"
+                        [settings]="managerDropdownSettings" [data]="managerDropdownList"
+                        [(ngModel)]="selectedManagers">
+                    </ng-multiselect-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 ">
+            <label>Description</label>
+            <textarea rows="4" [(ngModel)]="projectDescription" class="form-control"
+                placeholder="Project Description"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button (click)="updateProjects()" class="btn btn-dark text-center rounded-0  mt-4">Update</button>
+        </div>
+    </div>
+</div>

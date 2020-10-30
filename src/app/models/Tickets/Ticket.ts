@@ -59,7 +59,6 @@ export class TicketForUpdateDto {
     TPriorityId: string;
     TStatusId:string;
     ProjectId: string;
-    ProjectManagers?: ProjectManager[];
     UsersTickets: UserTicket[];
 }
 export class DataForTicketDashboardVm {

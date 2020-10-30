@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as $ from "jquery";
@@ -8,7 +8,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+
 })
 export class MainComponent implements OnInit {
   constructor(private toastr: ToastrService, private router: Router, private userService: UserService,) { }

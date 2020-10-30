@@ -7,15 +7,14 @@
     </div>
     <ul class="list-unstyled components">
       <li class="active">
-        <a href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <i class="fas fa-project-diagram"></i>
+        <a href="#ticketSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="fas fa-ticket-alt"></i>
           Ticket
         </a>
-        <ul class="collapse list-unstyled" id="ProjectSubmenu">
+        <ul class="collapse list-unstyled" id="ticketSubmenu">
           <li>
             <a [routerLink]="['/home/ticket/ticketdashboard']">Dashboard</a>
           </li>
-
           <li>
             <a [routerLink]="['/home/ticket/gettickets']">All Tickets</a>
           </li>
@@ -25,8 +24,24 @@
           <li>
             <a [routerLink]="['/home/ticket/create']">Create</a>
           </li>
-
-
+        </ul>
+        <a href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="fas fa-project-diagram"></i>
+          Project
+        </a>
+        <ul class="collapse list-unstyled" id="ProjectSubmenu">
+          <li>
+            <a [routerLink]="['/home/ticket/ticketdashboard']">Dashboard</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/project/getprojects']">All Projects</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/ticket/mytickets']">My Projects</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/project/createproject']">Create Project</a>
+          </li>
         </ul>
       </li>
     </ul>

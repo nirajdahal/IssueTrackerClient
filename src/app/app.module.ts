@@ -25,6 +25,11 @@ import {MatPaginatorModule } from '@angular/material/paginator';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ChartsModule } from 'ng2-charts';
 import { TicketDashbaordComponent } from './components/main/tickets/ticket-dashbaord/ticket-dashbaord.component';
+import { AllProjectsComponent } from './components/main/projects/all-projects/all-projects.component';
+import { MyProjectsComponent } from './components/main/projects/my-projects/my-projects.component';
+import { CreateProjectComponent } from './components/main/projects/create-project/create-project.component';
+import { ProjectDashboardComponent } from './components/main/projects/project-dashboard/project-dashboard.component';
+import { UpdateProjectComponent } from './components/main/projects/update-project/update-project.component';
 
 
 export function tokenGetter() {
@@ -42,7 +47,12 @@ export function tokenGetter() {
     UpdateTicketComponent,
     AllTicketsComponent,
     MyTicketsComponent,
-    TicketDashbaordComponent
+    TicketDashbaordComponent,
+    AllProjectsComponent,
+    MyProjectsComponent,
+    CreateProjectComponent,
+    ProjectDashboardComponent,
+    UpdateProjectComponent
   ],
   imports: [
     BrowserModule,
