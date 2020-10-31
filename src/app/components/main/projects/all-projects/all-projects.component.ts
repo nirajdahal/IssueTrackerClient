@@ -3,9 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { ProjectDto } from 'src/app/models/Projects/Project';
+import { ProjectVmDto } from 'src/app/models/Projects/Project';
 import { ProjectsService } from 'src/app/services/Projects/projects.service';
-import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 @Component({
   selector: 'app-all-projects',
   templateUrl: './all-projects.component.html',
@@ -21,7 +20,7 @@ import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 export class AllProjectsComponent implements OnInit {
   //Columns names, table data from datasource, pagination and sorting
   columnsToDisplay: string[] = ['name', 'description', 'manager', 'delete', 'edit', 'more'];
-  dataSource = new MatTableDataSource<ProjectDto>();
+  dataSource = new MatTableDataSource<ProjectVmDto>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   expandedDetail: any;
   constructor(private projectService: ProjectsService, private toastr: ToastrService) {
@@ -43,7 +42,7 @@ export class AllProjectsComponent implements OnInit {
   public getAllOwners = () => {
     this.projectService.getAllProjects()
       .subscribe(res => {
-        this.dataSource.data = res as ProjectDto[];
+        this.dataSource.data = res as ProjectVmDto[];
         console.log(this.dataSource.data)
       })
   }
@@ -51,8 +50,7 @@ export class AllProjectsComponent implements OnInit {
   getProjectToDelete(Id) {
     this.projectToDeleteId = Id;
   }
-  deleteTicket() {
-
+  deleteProject() {
     this.projectService.deleteProject(this.projectToDeleteId).subscribe(data => {
       console.log(data);
       this.toastr.success("Ticket Deleted Sucessfully", "Success!");
@@ -68,13 +66,11 @@ export class AllProjectsComponent implements OnInit {
         document.getElementById("deleteModalClose").click();
       });
   }
-
   loadUpdateProject: boolean = false;
-  projectToSend: ProjectDto;
+  projectToSend: ProjectVmDto;
   getProjectToUpdate(Id) {
     var allProjects = this.dataSource.data;
     this.projectToSend = allProjects.find(x => x.Id === Id);
     this.loadUpdateProject = true;
   }
 }
-

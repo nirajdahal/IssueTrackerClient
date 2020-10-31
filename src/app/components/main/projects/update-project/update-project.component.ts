@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
-import { ProjectDto, ProjectForUpdateDto } from 'src/app/models/Projects/Project';
+import {  ProjectForUpdateDto, ProjectVmDto } from 'src/app/models/Projects/Project';
 import { UserVm } from 'src/app/models/User';
 import { ProjectManager } from 'src/app/models/UserTicket/UserTicketModel';
 import { ProjectsService } from 'src/app/services/Projects/projects.service';
@@ -17,7 +17,7 @@ export class UpdateProjectComponent implements OnInit {
   selectedManagers: UserVm[] = [];
   managerDropdownSettings: IDropdownSettings = {};
 
-  @Input() projectInformation: ProjectDto;
+  @Input() projectInformation: ProjectVmDto;
   projectDescription: string = "";
   projectTitle: string = "";
   projectId: string = "";

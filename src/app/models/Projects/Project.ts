@@ -4,7 +4,7 @@ export class ProjectIdNameVm {
     Id: string
     Title: string
 }
-export class ProjectDto {
+export class ProjectVmDto {
     Id: string;
     Title: string;
     Description: string;
@@ -30,4 +30,12 @@ export class ProjectForUpdateDto
     Title:string;
     Description:string;
      ProjectManagers:ProjectManager[];
+}
+
+export class ProjectForCreation
+{
+
+   Title :string
+   Description :string
+   ProjectManagers:ProjectManager[]; // get project managers using action method in user controller
 }

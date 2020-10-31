@@ -122,7 +122,7 @@
             </div>
             <div class="modal-footer">
                 <button id="deleteModalClose" type="button" class="btn-dark" data-dismiss="modal">Close</button>
-                <button type="button" class="btn-danger" (click)="deleteTicket()">Yes</button>
+                <button type="button" class="btn-danger" (click)="deleteProject()">Yes</button>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
 
-                <p class="text-center"><b>Update Ticket</b></p>
+                <p class="text-center"><b>Update Project</b></p>
                 <div *ngIf="loadUpdateProject">
                     <app-update-project [projectInformation]="projectToSend"></app-update-project>
                 </div>
