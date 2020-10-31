@@ -13,6 +13,8 @@ import { TicketDashbaordComponent } from './components/main/tickets/ticket-dashb
 import { AllProjectsComponent } from './components/main/projects/all-projects/all-projects.component';
 import { CreateProjectComponent } from './components/main/projects/create-project/create-project.component';
 import { MyProjectsComponent } from './components/main/projects/my-projects/my-projects.component';
+import { ProjectDashboardComponent } from './components/main/projects/project-dashboard/project-dashboard.component';
+import { TicketPriorityComponent } from './components/main/ticket-settings/ticket-priority/ticket-priority.component';
 const routes: Routes = [
   { path: '', redirectTo: '/user/registration', pathMatch: 'full' },
   {
@@ -31,7 +33,11 @@ const routes: Routes = [
       { path: 'ticket/ticketdashboard', component: TicketDashbaordComponent },
       { path: 'project/getprojects', component: AllProjectsComponent },
       { path: 'project/createproject', component: CreateProjectComponent },
-      { path: 'project/myproject', component: MyProjectsComponent }
+      { path: 'project/myproject', component: MyProjectsComponent },
+      { path: 'project/projectDashboard', component: ProjectDashboardComponent },
+      { path: 'ticket/priority', component: TicketPriorityComponent }
+
+
     ]
   }
 ];

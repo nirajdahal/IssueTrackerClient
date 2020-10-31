@@ -11,7 +11,7 @@ export class TicketStatusVmDto {
     Name: string;
 }
 export class TicketPriorityVmDto {
-    Id: string;
+    Id?: string;
     Name: string;
 }
 export class TicketTypeVmDto {
@@ -57,7 +57,7 @@ export class TicketForUpdateDto {
     Description: string;
     TTypeId: string;
     TPriorityId: string;
-    TStatusId:string;
+    TStatusId: string;
     ProjectId: string;
     UsersTickets: UserTicket[];
 }
@@ -71,3 +71,4 @@ export class DashboardDataForTicket {
     Name: string
     Count: number
 }
+

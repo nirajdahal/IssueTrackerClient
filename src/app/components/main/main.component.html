@@ -31,7 +31,7 @@
         </a>
         <ul class="collapse list-unstyled" id="ProjectSubmenu">
           <li>
-            <a [routerLink]="['/home/ticket/ticketdashboard']">Dashboard</a>
+            <a [routerLink]="['/home/project/projectDashboard']">Dashboard</a>
           </li>
           <li>
             <a [routerLink]="['/home/project/getprojects']">All Projects</a>
@@ -41,6 +41,22 @@
           </li>
           <li>
             <a [routerLink]="['/home/project/createproject']">Create Project</a>
+          </li>
+        </ul>
+        <a ><i class="fas fa-user-lock"></i><b>Admin Section</b></a>
+        <a href="#TicketSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="fas fa-cog"></i>
+          Ticket Settings
+        </a>
+        <ul class="collapse list-unstyled" id="TicketSetting">
+          <li>
+            <a [routerLink]="['/home/project/projectDashboard']">Ticket Status</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/ticket/priority']">Ticket Priority</a>
+          </li>
+          <li>
+            <a [routerLink]="['/home/project/myproject']">Ticket Type</a>
           </li>
         </ul>
       </li>

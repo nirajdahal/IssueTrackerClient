@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetAllTicketVmDto, UserTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
@@ -19,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AllTicketsComponent implements OnInit {
   //Columns names, table data from datasource, pagination and sorting
-  columnsToDisplay: string[] = ['name', 'project', 'manager', 'priority', 'status', 'type', 'delete', 'more'];
+  columnsToDisplay: string[] = ['name', 'project', 'manager', 'priority', 'status', 'type', 'delete', 'edit'];
   dataSource = new MatTableDataSource<GetAllTicketVmDto>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   expandedDetail: any;
@@ -69,5 +69,14 @@ export class AllTicketsComponent implements OnInit {
         }
         document.getElementById("deleteModalClose").click();
       });
+  }
+  userInfoToSend: GetAllTicketVmDto;
+  loadUpdateTicket: boolean = false;
+  editTicket(id) {
+    //selecting the ticket with its id
+    var userTickets = this.dataSource.data;
+    var dataToSend = userTickets.find(x => x.Id === id);
+    this.userInfoToSend = dataToSend;
+    this.loadUpdateTicket = true;
   }
 }

@@ -25,7 +25,7 @@ export class ProjectsService {
   }
   createProject(data: ProjectForCreation) {
     var payload = data;
-    return this.http.post<ProjectForCreation>(this.BaseURI + '/project/', payload, this.httpHeader);
+    return this.http.post<ProjectForCreation>(this.BaseURI + '/project', payload, this.httpHeader);
   }
 
   getAllProjectsForUser(Id:string) {

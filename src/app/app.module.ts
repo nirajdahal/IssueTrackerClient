@@ -30,6 +30,9 @@ import { MyProjectsComponent } from './components/main/projects/my-projects/my-p
 import { CreateProjectComponent } from './components/main/projects/create-project/create-project.component';
 import { ProjectDashboardComponent } from './components/main/projects/project-dashboard/project-dashboard.component';
 import { UpdateProjectComponent } from './components/main/projects/update-project/update-project.component';
+import { TicketPriorityComponent } from './components/main/ticket-settings/ticket-priority/ticket-priority.component';
+import { TicketStatusComponent } from './components/main/ticket-settings/ticket-status/ticket-status.component';
+import { TicketTypeComponent } from './components/main/ticket-settings/ticket-type/ticket-type.component';
 
 
 export function tokenGetter() {
@@ -52,7 +55,10 @@ export function tokenGetter() {
     MyProjectsComponent,
     CreateProjectComponent,
     ProjectDashboardComponent,
-    UpdateProjectComponent
+    UpdateProjectComponent,
+    TicketPriorityComponent,
+    TicketStatusComponent,
+    TicketTypeComponent
   ],
   imports: [
     BrowserModule,

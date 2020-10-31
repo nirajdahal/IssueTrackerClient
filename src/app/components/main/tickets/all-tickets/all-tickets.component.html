@@ -46,9 +46,14 @@
                 </button>
             </td>
         </ng-container>
-        <ng-container matColumnDef="more">
+        <ng-container matColumnDef="edit">
             <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element"> <i class="fas fa-angle-down"></i></td>
+            <td mat-cell *matCellDef="let element">
+                <button (click)="editTicket(element.Id)" type="button" class="btn btn-transparent" data-toggle="modal"
+                    data-target="#editModal" data-backdrop='static' data-keyboard='false'>
+                    Edit
+                </button>
+            </td>
         </ng-container>
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
@@ -138,6 +143,26 @@
     </mat-paginator>
 </div>
 
+<!-- Modal FOR Editing Ticket -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content  rounded-0">
+
+            <div class="modal-body">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+                <p class="text-center"><b>Update Ticket</b></p>
+                <div *ngIf="loadUpdateTicket">
+                    <app-update-ticket [userTicketInformation]="userInfoToSend"></app-update-ticket>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 <!-- Modal For Deleting Ticket -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
