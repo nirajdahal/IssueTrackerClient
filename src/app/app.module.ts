@@ -34,6 +34,7 @@ import { TicketPriorityComponent } from './components/main/ticket-settings/ticke
 import { TicketStatusComponent } from './components/main/ticket-settings/ticket-status/ticket-status.component';
 import { TicketTypeComponent } from './components/main/ticket-settings/ticket-type/ticket-type.component';
 import { UserSettingsComponent } from './components/main/user-settings/user-settings.component';
+import { DashboardComponent } from './components/main/dashboard/dashboard.component';
 
 
 export function tokenGetter() {
@@ -60,7 +61,8 @@ export function tokenGetter() {
     TicketPriorityComponent,
     TicketStatusComponent,
     TicketTypeComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

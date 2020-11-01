@@ -7,6 +7,10 @@
     </div>
     <ul class="list-unstyled components">
       <li class="active">
+
+        <a [routerLink]="['/home/dashboard']"><i class="fas fa-chart-line"></i>Dashboard</a>
+
+
         <a href="#ticketSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <i class="fas fa-ticket-alt"></i>
           Ticket
@@ -43,7 +47,18 @@
             <a [routerLink]="['/home/project/createproject']">Create Project</a>
           </li>
         </ul>
-        <a ><i class="fas fa-user-lock"></i><b>Admin Section</b></a>
+        <a href="#UserSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="fas fa-user-cog"></i>
+          User Settings
+        </a>
+        <ul class="collapse list-unstyled" id="UserSetting">
+          <li>
+            <a [routerLink]="['/home/ticket/settings']">Settings</a>
+          </li>
+
+
+        </ul>
+        <a><i class="fas fa-user-lock"></i><b>Admin Section</b></a>
         <a href="#TicketSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <i class="fas fa-cog"></i>
           Ticket Settings
@@ -62,17 +77,7 @@
         </ul>
 
 
-        <a href="#UserSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <i class="fas fa-user-cog"></i>
-          User Settings
-        </a>
-        <ul class="collapse list-unstyled" id="UserSetting">
-          <li>
-            <a [routerLink]="['/home/ticket/settings']">Settings</a>
-          </li>
 
-
-        </ul>
 
       </li>
     </ul>
