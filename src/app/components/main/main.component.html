@@ -50,15 +50,30 @@
         </a>
         <ul class="collapse list-unstyled" id="TicketSetting">
           <li>
-            <a [routerLink]="['/home/project/projectDashboard']">Ticket Status</a>
+            <a [routerLink]="['/home/ticket/status']">Ticket Status</a>
           </li>
           <li>
             <a [routerLink]="['/home/ticket/priority']">Ticket Priority</a>
           </li>
           <li>
-            <a [routerLink]="['/home/project/myproject']">Ticket Type</a>
+            <a [routerLink]="['/home/ticket/type']">Ticket Type</a>
           </li>
+
         </ul>
+
+
+        <a href="#UserSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <i class="fas fa-user-cog"></i>
+          User Settings
+        </a>
+        <ul class="collapse list-unstyled" id="UserSetting">
+          <li>
+            <a [routerLink]="['/home/ticket/settings']">Settings</a>
+          </li>
+
+
+        </ul>
+
       </li>
     </ul>
   </nav>

@@ -7,7 +7,7 @@ export class TicketForCreation {
     ProjectId: string;
 }
 export class TicketStatusVmDto {
-    Id: string;
+    Id?: string;
     Name: string;
 }
 export class TicketPriorityVmDto {
@@ -15,7 +15,7 @@ export class TicketPriorityVmDto {
     Name: string;
 }
 export class TicketTypeVmDto {
-    Id: string;
+    Id?: string;
     Name: string;
 }
 export class GetAllTicketVmDto {

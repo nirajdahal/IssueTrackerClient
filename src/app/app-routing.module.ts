@@ -15,6 +15,9 @@ import { CreateProjectComponent } from './components/main/projects/create-projec
 import { MyProjectsComponent } from './components/main/projects/my-projects/my-projects.component';
 import { ProjectDashboardComponent } from './components/main/projects/project-dashboard/project-dashboard.component';
 import { TicketPriorityComponent } from './components/main/ticket-settings/ticket-priority/ticket-priority.component';
+import { TicketStatusComponent } from './components/main/ticket-settings/ticket-status/ticket-status.component';
+import { TicketTypeComponent } from './components/main/ticket-settings/ticket-type/ticket-type.component';
+import { UserSettingsComponent } from './components/main/user-settings/user-settings.component';
 const routes: Routes = [
   { path: '', redirectTo: '/user/registration', pathMatch: 'full' },
   {
@@ -35,7 +38,10 @@ const routes: Routes = [
       { path: 'project/createproject', component: CreateProjectComponent },
       { path: 'project/myproject', component: MyProjectsComponent },
       { path: 'project/projectDashboard', component: ProjectDashboardComponent },
-      { path: 'ticket/priority', component: TicketPriorityComponent }
+      { path: 'ticket/priority', component: TicketPriorityComponent },
+      { path: 'ticket/status', component: TicketStatusComponent },
+      { path: 'ticket/type', component: TicketTypeComponent},
+      { path: 'ticket/settings', component: UserSettingsComponent}
 
 
     ]

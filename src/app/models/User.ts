@@ -17,3 +17,9 @@ export class UserVm
 
 }
 
+export class ChangePassword
+{
+    OldPassword:string
+    NewPassword:string
+}
+

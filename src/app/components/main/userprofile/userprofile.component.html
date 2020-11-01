@@ -1,12 +1,12 @@
 <div class="container">
     <div class="row">
-        <div *ngIf ="!valueExtracted" class="col text-center">
-            <p>Username: {{name}}</p>
-            <p>Email: {{email}}</p>
+        <div *ngIf="!valueExtracted" class="col">
+            <p><b>Username:</b>{{name}}</p>
+            <p><b>Email:</b>{{email}}</p>
         </div>
-        <div *ngIf ="valueExtracted" class="col text-center">
-            <p>Username: {{userInfo.Name}}</p>
-            <p>Email: {{userInfo.Email}}</p>
+        <div *ngIf="valueExtracted" class="col">
+            <p><b>Username:</b> {{userInfo.Name}}</p>
+            <p><b>Email:</b> {{userInfo.Email}}</p>
         </div>
     </div>
 </div>

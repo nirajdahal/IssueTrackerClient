@@ -33,6 +33,7 @@ import { UpdateProjectComponent } from './components/main/projects/update-projec
 import { TicketPriorityComponent } from './components/main/ticket-settings/ticket-priority/ticket-priority.component';
 import { TicketStatusComponent } from './components/main/ticket-settings/ticket-status/ticket-status.component';
 import { TicketTypeComponent } from './components/main/ticket-settings/ticket-type/ticket-type.component';
+import { UserSettingsComponent } from './components/main/user-settings/user-settings.component';
 
 
 export function tokenGetter() {
@@ -58,7 +59,8 @@ export function tokenGetter() {
     UpdateProjectComponent,
     TicketPriorityComponent,
     TicketStatusComponent,
-    TicketTypeComponent
+    TicketTypeComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
