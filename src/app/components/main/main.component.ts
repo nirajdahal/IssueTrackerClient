@@ -12,16 +12,19 @@ import { UserService } from 'src/app/services/user.service';
 
 })
 export class MainComponent implements OnInit {
-  constructor(private toastr: ToastrService, private router: Router, private userService: UserService,) { }
+  constructor(private jwtHelper: JwtHelperService, private toastr: ToastrService, private router: Router, private userService: UserService,) { }
   tokenVal: TokenVal;
   userRole: string = "";
   ngOnInit(): void {
+    var token = localStorage.getItem("issueTrackerToken")
+    console.log(token);
     this.userRole = this.userService.userRole();
     if(this.userService.accessMainComponent()){
       this.router.navigate(['/user/registration']);
       this.toastr.warning("Admin permission required", 'Failed');
     }
 
+    this.getUser();
     //Sidebar collapse on and off
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
@@ -34,5 +37,16 @@ export class MainComponent implements OnInit {
     localStorage.removeItem('issueTrackerToken');
     this.toastr.success("Logout Successful", 'Goodbye');
     this.router.navigate(['/user/registration']);
+  }
+
+  userName:String;
+
+  getUser(){
+    var token = localStorage.getItem("issueTrackerToken")
+    if (token !== null) {
+      this.tokenVal = this.jwtHelper.decodeToken(token);
+      var name= this.tokenVal.UserName;
+      this.userName = name
+    }
   }
 }

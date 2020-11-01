@@ -4,4 +4,5 @@ export class TokenVal {
   iat: any
   nbf: any
   role: string
+  UserName:string
 }
