@@ -40,13 +40,13 @@ export class MainComponent implements OnInit {
   }
 
   userName:String;
-
   getUser(){
     var token = localStorage.getItem("issueTrackerToken")
     if (token !== null) {
       this.tokenVal = this.jwtHelper.decodeToken(token);
       var name= this.tokenVal.UserName;
       this.userName = name
+
     }
   }
 }

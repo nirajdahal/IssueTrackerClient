@@ -16,24 +16,24 @@
           Ticket
         </a>
         <ul class="collapse list-unstyled" id="ticketSubmenu">
-          <li>
+          <li *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'">
             <a [routerLink]="['/home/ticket/ticketdashboard']">Dashboard</a>
           </li>
-          <li>
+          <li *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'">
             <a [routerLink]="['/home/ticket/gettickets']">All Tickets</a>
           </li>
-          <li>
+          <li *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'">
             <a [routerLink]="['/home/ticket/mytickets']">My Tickets</a>
           </li>
           <li>
             <a [routerLink]="['/home/ticket/create']">Create</a>
           </li>
         </ul>
-        <a href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <a *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'" href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <i class="fas fa-project-diagram"></i>
           Project
         </a>
-        <ul class="collapse list-unstyled" id="ProjectSubmenu">
+        <ul *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'" class="collapse list-unstyled" id="ProjectSubmenu">
           <li>
             <a [routerLink]="['/home/project/projectDashboard']">Dashboard</a>
           </li>
@@ -58,8 +58,9 @@
 
 
         </ul>
-        <a><i class="fas fa-user-lock"></i><b>Admin Section</b></a>
-        <a href="#TicketSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+        <a *ngIf="userRole=='Admin' || userRole=='Project Manager'">
+          <i class="fas fa-user-lock"></i><b>Admin Section</b></a>
+        <a *ngIf="userRole=='Admin' || userRole=='Project Manager'" href="#TicketSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
           <i class="fas fa-cog"></i>
           Ticket Settings
         </a>
