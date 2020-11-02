@@ -1,0 +1,124 @@
+<div *ngIf="loadDetails" class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="row">
+                <div class="col-12 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Ticket
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title"><b>Title:</b> {{userTicketInformation.Title}}</p>
+                            <p class="card-text"><b>Description:</b> {{userTicketInformation.Description}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Ticket Status
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title"><b>Status:</b> {{userTicketInformation.TicketStatusVm.Name}}</p>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Ticket Priority
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title"><b>Priority:</b> {{userTicketInformation.TicketPriorityVm.Name}}</p>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Ticket Type
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title"><b>Type:</b> {{userTicketInformation.TicketTypeVm.Name}}</p>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Developers
+                        </div>
+                        <div class="card-body">
+
+                            <p *ngFor="let user of userTicketInformation.UsersTicketsVm">
+                                {{user.ApplicationUser.userName}}</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12 col-6 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Created
+                        </div>
+                        <div class="card-body">
+
+                            <b> At: &nbsp;</b>{{userTicketInformation.CreatedAt | date}}<bR>
+                            <b>By:&nbsp;</b>{{userTicketInformation.SubmittedByName}}
+                            {{userTicketInformation.SubmittedByEmail}}
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-6 m-0 p-0">
+                    <div class="rounded-0 card text-center">
+                        <div class="card-header">
+                            Updated
+                        </div>
+                        <div class="card-body">
+
+                            <b> At: &nbsp;</b>{{userTicketInformation.UpdatedAt | date}}<br>
+                            <b> By:&nbsp;</b>
+                            {{userTicketInformation.UpdatedByEmail}}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="row">
+                <div class="col-12">
+                    <label class="mt-2"><b>Comment</b></label>
+                    <input [(ngModel)]="ticketComment" class="form-control rounded-0" type="text" placeholder="Comment">
+                    <button class="btn btn-dark text-center rounded-0" (click)="createComment()">
+                        Comment
+                    </button>
+                </div>
+                <div class="col-12">
+                   <h2 class="mt-3">All Comments</h2>
+
+                   <div *ngFor="let comment of comments">
+                    <p>{{comment.Description}}</p>
+
+                   </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>

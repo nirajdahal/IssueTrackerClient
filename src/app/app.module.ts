@@ -35,6 +35,7 @@ import { TicketStatusComponent } from './components/main/ticket-settings/ticket-
 import { TicketTypeComponent } from './components/main/ticket-settings/ticket-type/ticket-type.component';
 import { UserSettingsComponent } from './components/main/user-settings/user-settings.component';
 import { DashboardComponent } from './components/main/dashboard/dashboard.component';
+import { TicketDetailsComponent } from './components/main/tickets/ticket-details/ticket-details.component';
 
 
 export function tokenGetter() {
@@ -62,7 +63,8 @@ export function tokenGetter() {
     TicketStatusComponent,
     TicketTypeComponent,
     UserSettingsComponent,
-    DashboardComponent
+    DashboardComponent,
+    TicketDetailsComponent
   ],
   imports: [
     BrowserModule,

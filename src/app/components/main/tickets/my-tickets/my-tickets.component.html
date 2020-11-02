@@ -63,6 +63,10 @@
                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="container mt-2 mb-2">
                         <div class="row">
+                            <div class="col-12 text-left">
+                                <button (click)="ticketDetails(element.Id)" class="btn-dark border-0 m-0">Click For More Details </button>
+
+                            </div>
                             <div class="col-3 col-lg-1 p-0 text-left">
                                 <b>Ticket :</b>
                             </div>

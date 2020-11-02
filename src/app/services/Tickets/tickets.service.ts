@@ -40,4 +40,8 @@ export class TicketsService {
     return this.http.get<DataForTicketDashboardVm>(this.BaseURI + '/ticket/dashboard', this.httpHeader);
   }
 
+  getTicketById(id: String) {
+    return this.http.get<GetAllTicketVmDto>(this.BaseURI + '/ticket/' + id, this.httpHeader);
+  }
+
 }

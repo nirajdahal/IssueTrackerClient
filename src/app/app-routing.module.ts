@@ -19,6 +19,7 @@ import { TicketStatusComponent } from './components/main/ticket-settings/ticket-
 import { TicketTypeComponent } from './components/main/ticket-settings/ticket-type/ticket-type.component';
 import { UserSettingsComponent } from './components/main/user-settings/user-settings.component';
 import { DashboardComponent } from './components/main/dashboard/dashboard.component';
+import { TicketDetailsComponent } from './components/main/tickets/ticket-details/ticket-details.component';
 const routes: Routes = [
   { path: '', redirectTo: '/user/registration', pathMatch: 'full' },
   {
@@ -43,9 +44,8 @@ const routes: Routes = [
       { path: 'ticket/status', component: TicketStatusComponent },
       { path: 'ticket/type', component: TicketTypeComponent},
       { path: 'ticket/settings', component: UserSettingsComponent},
-      { path: 'dashboard', component: DashboardComponent}
-
-
+      { path: 'dashboard', component: DashboardComponent},
+      { path: 'ticket/details', component: TicketDetailsComponent}
 
     ]
   }

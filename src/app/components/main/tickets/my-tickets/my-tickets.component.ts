@@ -2,10 +2,12 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllTicketVmDto } from 'src/app/models/Tickets/Ticket';
 import { TokenVal } from 'src/app/models/TokenModel';
+import { TicketDetailService } from 'src/app/services/Tickets/ticketdetail.service';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 @Component({
   selector: 'app-my-tickets',
@@ -25,7 +27,12 @@ export class MyTicketsComponent implements OnInit {
   dataSource = new MatTableDataSource<GetAllTicketVmDto>();
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   expandedDetail: any;
-  constructor(private ticketService: TicketsService, private jwtHelper: JwtHelperService, private toastr: ToastrService) {
+  constructor(
+    private ticketDetailService: TicketDetailService,
+    private router: Router,
+    private ticketService: TicketsService,
+    private jwtHelper: JwtHelperService,
+    private toastr: ToastrService) {
   }
   ngOnInit() {
     this.getTicketsForUser();
@@ -75,16 +82,25 @@ export class MyTicketsComponent implements OnInit {
       this.toastr.success("Ticket Deleted Sucessfully", "Success!");
       document.getElementById("deleteModalClose").click();
     },
-    (err) => {
+      (err) => {
 
-      if (err.status == 401) {
-        this.toastr.warning("Can't Delelte as this ticket doesnot belong to you", 'Unauthorized!');
-      }
-      else {
-        this.toastr.error("Ticket Deletion Failed", 'Sorry!');
-      }
-      document.getElementById("deleteModalClose").click();
-    });
+        if (err.status == 401) {
+          this.toastr.warning("Can't Delelte as this ticket doesnot belong to you", 'Unauthorized!');
+        }
+        else {
+          this.toastr.error("Ticket Deletion Failed", 'Sorry!');
+        }
+        document.getElementById("deleteModalClose").click();
+      });
   }
+  loadTicketDetail: boolean = false;
+  ticketDetails(id) {
+    var userTickets = this.dataSource.data;
+    var dataToSave = userTickets.find(x => x.Id === id);
+    this.ticketDetailService.setParam(dataToSave);
+    this.router.navigate(['/home/ticket/details']);
+
   }
+
+}
 

@@ -16,9 +16,10 @@ export class RegistrationComponent implements OnInit {
     private router: Router
   ) {
   }
+
   ngOnInit(): void {
-    if (localStorage.getItem('token') != null) {
-      this.router.navigate(['/home'])
+    if (localStorage.getItem('issueTrackerToken') != null) {
+      this.router.navigate(['/home/ticket/gettickets'])
     }
     //Animation for signin and sign up toggle
     const sign_in_btn = document.querySelector("#sign-in-btn");

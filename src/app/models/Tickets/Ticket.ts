@@ -1,4 +1,5 @@
 import { ProjectManager, UserTicket } from '../UserTicket/UserTicketModel';
+import { TicketCommentVmDto } from './Comment';
 export class TicketForCreation {
     Title: string;
     Description: string;
