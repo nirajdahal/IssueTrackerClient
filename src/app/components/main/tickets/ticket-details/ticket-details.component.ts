@@ -37,6 +37,7 @@ export class TicketDetailsComponent implements OnInit {
   getCommentsForTicket(){
     this.ticketCommentService.getTicketComment(this.userTicketInformation.Id).subscribe(data =>{
       this.comments = data
+      this.comments.reverse();
       this.loadComments = true;
     }
     );
@@ -53,9 +54,7 @@ export class TicketDetailsComponent implements OnInit {
     this.ticketCommentService.createTicket(data).subscribe(res => {
       this.toastr.success("Comment Created Sucessfully", "Success!");
       this.ticketComment="";
-      this.ticketService.getTicketById(this.userTicketInformation.Id).subscribe(data => {
-        this.userTicketInformation = data;
-      })
+      this.getCommentsForTicket();
     },
     (err) => {
       if (err.status == 400) {

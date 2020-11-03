@@ -107,12 +107,16 @@
                     </button>
                 </div>
                 <div class="col-12">
-                   <h2 class="mt-3">All Comments</h2>
+                    <h2 class="mt-3">All Comments</h2>
 
-                   <div *ngFor="let comment of comments">
-                    <p>{{comment.Description}}</p>
+                    <div *ngFor="let comment of comments">
 
-                   </div>
+                        <div class="card-body m-0">
+                            <p><b>{{comment.CreatedBy}}</b> At {{comment.CreatedAt | date}}</p>
+                            <p>{{comment.Description}}</p>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
