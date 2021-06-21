@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            <div class="form-group">
+                <label for="userSelector">Example select</label>
+                <select  #userVal (change)="onUserChange(userVal.value)" class="form-control" id="userSelector">
+                  <option *ngFor="let user of  userDetails" [value]="user.Id">{{user.Email}}</option>
+
+                </select>
+              </div>
+
+        </div>
+
+        <div class="col-10">
+            <div class="form-group">
+                <label for="roleSelector">Roles</label>
+                <select #roleVal [(ngModel)]="selectedRole" (change)="onRoleChange(roleVal.value)" class="form-control" id="roleSelector">
+                  <option *ngFor="let userRole of  userRoles" [value]="userRole.Name">{{userRole.Name}}</option>
+
+                </select>
+              </div>
+
+        </div>
+
+        <div class="col-12">
+<button (click)="submitUserRole()" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+</div>

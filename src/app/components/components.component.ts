@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComponentsComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
 
+
+   }
+   title = 'IssueTrackerClient';
+   showSideBar = false;
   ngOnInit(): void {
   }
 

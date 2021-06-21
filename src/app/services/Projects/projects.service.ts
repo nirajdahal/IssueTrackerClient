@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { IssueTrackerConfiguration } from 'src/app/IssueTrackerConfig';
 import { ProjectVmDto, ProjectForCreation, ProjectForUpdateDto, ProjectIdNameVm } from 'src/app/models/Projects/Project';
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
-  readonly BaseURI = 'https://localhost:44392/api';
+  readonly BaseURI = IssueTrackerConfiguration.urlValue + '/api';
   httpHeader = { headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8') };
   postTicket: ProjectIdNameVm;
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }

@@ -73,7 +73,7 @@ export class CreateProjectComponent implements OnInit {
           this.toastr.warning("Admin hasnot verified your account. Create Failed", 'Unauthorized!');
         }
         else {
-          this.toastr.error("Create Failed Failed", 'Sorry!');
+          this.toastr.error("Create Failed ", 'Sorry!');
         }
       });
   }

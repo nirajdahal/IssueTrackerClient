@@ -1,5 +1,7 @@
 <div class="text-center mt-2">
+
     <mat-form-field>
+
         <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search For Projects">
     </mat-form-field>
 </div>
@@ -7,20 +9,20 @@
 
 <div class=" p-lg-4">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Project </th>
+        <ng-container  matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef><h1></h1></th>
             <td mat-cell *matCellDef="let element">
                 {{element.Title | slice:0:30}}
             </td>
         </ng-container>
         <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <th mat-header-cell *matHeaderCellDef><i class="fa fa-info-circle" aria-hidden="true"></i> Description </th>
             <td mat-cell *matCellDef="let element">
                 {{element.Description | slice:0:45 }}...
             </td>
         </ng-container>
         <ng-container matColumnDef="manager">
-            <th mat-header-cell *matHeaderCellDef> P. Manager </th>
+            <th mat-header-cell *matHeaderCellDef><i class="fa fa-user-secret" aria-hidden="true"></i> P. Manager </th>
             <td mat-cell *matCellDef="let element">
                 <div *ngFor="let user of element.ProjectManagers">
                     <span> {{user.ApplicationUser.userName}},&nbsp;<br></span>
@@ -33,7 +35,7 @@
                 <button (click)="getProjectToDelete(element.Id)" type="button"
                     class="bg-transparent border-0 text-danger" data-toggle="modal" data-target="#deleteModal"
                     data-backdrop='static' data-keyboard='false'>
-                    <i class="fas fa-trash-alt fa-lg"></i>
+                    <i class="fa fa-trash fa-lg"></i>
                 </button>
             </td>
         </ng-container>
@@ -49,7 +51,7 @@
         </ng-container>
         <ng-container matColumnDef="more">
             <th mat-header-cell *matHeaderCellDef> </th>
-            <td mat-cell *matCellDef="let element"> <i class="fas fa-angle-down"></i></td>
+            <td mat-cell *matCellDef="let element"> <i class="fa fa-angle-down"></i></td>
         </ng-container>
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
@@ -59,7 +61,7 @@
                     <div class="container mt-2 mb-2">
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Project :</b>
+                                <b><i class="fa fa-sitemap" aria-hidden="true"></i>Project :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Title}}
@@ -67,17 +69,17 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Details :</b>
+                                <b><i class="fa fa-info-circle" aria-hidden="true"></i>  Details :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Description}}
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Developers :</b>
+                            <div class="col-4 col-lg-1 p-0 text-left">
+                                <b><i class="fa fa-users" aria-hidden="true"></i> Devs :</b>
                             </div>
-                            <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
+                            <div class="col-8 col-lg-10 pl-3 pl-lg-0 text-left">
                                 <div *ngFor="let user of element.UsersProjects">
                                     <span>
                                         {{user.ApplicationUser.userName}}, </span>
@@ -86,7 +88,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Created At :</b>
+                                <b><i class="fa fa-calendar" aria-hidden="true"></i> Created :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-lg-0 text-left">
                                 {{element.CreatedAt | date}}

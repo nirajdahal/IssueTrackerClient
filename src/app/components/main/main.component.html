@@ -2,17 +2,16 @@
   <!-- Sidebar  -->
   <nav id="sidebar">
     <div class="sidebar-header">
-      <h3>IssueTracker</h3>
-      <strong>IT</strong>
+      <h2 class="text-center">Bugify</h2>
+      <strong>B</strong>
     </div>
     <ul class="list-unstyled components">
       <li class="active">
 
-        <a [routerLink]="['/home/dashboard']"><i class="fas fa-chart-line"></i>Dashboard</a>
-
+        <a [routerLink]="['/home/dashboard']"><i class="fa fa-line-chart" aria-hidden="true"></i>Dashboard</a>
 
         <a href="#ticketSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <i class="fas fa-ticket-alt"></i>
+          <i class="fa fa-ticket"></i>
           Ticket
         </a>
         <ul class="collapse list-unstyled" id="ticketSubmenu">
@@ -30,7 +29,7 @@
           </li>
         </ul>
         <a *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'" href="#ProjectSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <i class="fas fa-project-diagram"></i>
+          <i class="fa fa-sitemap" aria-hidden="true"></i>
           Project
         </a>
         <ul *ngIf="userRole=='Admin' || userRole=='Project Manager' || userRole=='Developer'" class="collapse list-unstyled" id="ProjectSubmenu">
@@ -48,7 +47,7 @@
           </li>
         </ul>
         <a href="#UserSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <i class="fas fa-user-cog"></i>
+          <i class="fa fa-cog" aria-hidden="true"></i>
           User Settings
         </a>
         <ul class="collapse list-unstyled" id="UserSetting">
@@ -58,24 +57,17 @@
 
 
         </ul>
-        <a *ngIf="userRole=='Admin' || userRole=='Project Manager'">
-          <i class="fas fa-user-lock"></i><b>Admin Section</b></a>
-        <a *ngIf="userRole=='Admin' || userRole=='Project Manager'" href="#TicketSetting" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-          <i class="fas fa-cog"></i>
-          Ticket Settings
-        </a>
-        <ul class="collapse list-unstyled" id="TicketSetting">
-          <li>
-            <a [routerLink]="['/home/ticket/status']">Ticket Status</a>
-          </li>
-          <li>
-            <a [routerLink]="['/home/ticket/priority']">Ticket Priority</a>
-          </li>
-          <li>
-            <a [routerLink]="['/home/ticket/type']">Ticket Type</a>
-          </li>
 
-        </ul>
+
+
+            <a [routerLink]="['/home/ticket/status']"><i class="fa fa-signal" aria-hidden="true"></i>Ticket Status</a>
+
+            <a [routerLink]="['/home/ticket/priority']"><i class="fa fa-tasks" aria-hidden="true"></i>Ticket Priority</a>
+
+            <a [routerLink]="['/home/ticket/type']"><i class="fa fa-hourglass" aria-hidden="true"></i>Ticket Type</a>
+
+          <a *ngIf="userRole=='Admin'" [routerLink]="['/home/admin/useraccess']"><i class="fa fa-lock" aria-hidden="true"></i>Modify Access</a>
+
 
 
 
@@ -88,20 +80,20 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 pl-0">
       <div class="container-fluid pl-0">
         <button type="button" id="sidebarCollapse" class=" btn btn-blue">
-          <i class="fas fa-arrows-alt-h"></i>
+          <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
         <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
           data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
           aria-label="Toggle navigation">
-          <i class="fas fa-align-justify"></i>
+          <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link">Welcome <b>{{userName}}</b>  &nbsp;<i class="fas fa-bell">&nbsp;&nbsp;</i></a>
+              <a class="nav-link">Welcome <b>{{userName}}</b>  &nbsp;<i class="fa fa-bell">&nbsp;&nbsp;</i></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" (click)="logout()">Logout <i class="fas fa-door-open"></i></a>
+              <a class="nav-link" (click)="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
             </li>
           </ul>
         </div>

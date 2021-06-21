@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { IssueTrackerConfiguration } from 'src/app/IssueTrackerConfig';
 import { TicketCommentVmDto } from 'src/app/models/Tickets/Comment';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { TicketCommentVmDto } from 'src/app/models/Tickets/Comment';
 })
 export class TicketCommentService {
 
-  readonly BaseURI = 'https://localhost:44392/api';
+  readonly BaseURI = IssueTrackerConfiguration.urlValue + '/api';;
   httpHeader = { headers: new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8') };
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
   createTicket(data: TicketCommentVmDto) {
