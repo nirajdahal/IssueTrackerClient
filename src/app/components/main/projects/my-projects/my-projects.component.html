@@ -76,7 +76,7 @@
                                 <b>Developers :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
-                                <div *ngFor="let user of element.UsersProjects">
+                                <div *ngFor="let user of element.UsersProjects[0]">
                                     <span>
                                         {{user.ApplicationUser.userName}}, </span>
                                 </div>

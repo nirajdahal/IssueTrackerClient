@@ -44,7 +44,7 @@ export class MyProjectsComponent implements OnInit {
       this.tokenVal = this.jwtHelper.decodeToken(token);
       var userId = this.tokenVal.UserID;
       this.projectService.getAllProjectsForUser(userId).subscribe(data => {
-        this.dataSource.data = data
+        this.dataSource.data = data as ProjectVmDto[];
       })
     }
   }
