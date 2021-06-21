@@ -6,19 +6,19 @@
 <div class=" p-lg-4">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
         <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Project </th>
+            <th mat-header-cell *matHeaderCellDef><i class="fa fa-line-chart" aria-hidden="true"></i> Project </th>
             <td mat-cell *matCellDef="let element">
                 {{element.Title}}
             </td>
         </ng-container>
         <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <th mat-header-cell *matHeaderCellDef><i class="fa fa-info" aria-hidden="true"></i> Description </th>
             <td mat-cell *matCellDef="let element">
                 {{element.Description}}
             </td>
         </ng-container>
         <ng-container matColumnDef="manager">
-            <th mat-header-cell *matHeaderCellDef> P. Manager </th>
+            <th mat-header-cell *matHeaderCellDef><i class="fa fa-user-secret" aria-hidden="true"></i> P. Manager </th>
             <td mat-cell *matCellDef="let element">
                 <div *ngFor="let user of element.ProjectManagers">
                     <span> {{user.ApplicationUser.userName}},&nbsp;<br></span>
@@ -57,7 +57,7 @@
                     <div class="container mt-2 mb-2">
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Project :</b>
+                                <b><i class="fa fa-line-chart" aria-hidden="true"></i> Project :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Title}}
@@ -65,7 +65,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Details :</b>
+                                <b><i class="fa fa-info" aria-hidden="true"></i>Details :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Description}}
@@ -73,18 +73,18 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Developers :</b>
+                                <b><i class="fa fa-users" aria-hidden="true"></i> Devs:</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
-                                <div *ngFor="let user of element.UsersProjects[0]">
-                                    <span>
+                                <div *ngFor="let user of element.UsersProjects">
+                                    <span *ngIf="user.ApplicationUser!==null">
                                         {{user.ApplicationUser.userName}}, </span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Created At :</b>
+                                <b><i class="fa fa-calendar" aria-hidden="true"></i> Created :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-lg-0 text-left">
                                 {{element.CreatedAt | date}}

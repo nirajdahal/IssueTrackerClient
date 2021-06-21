@@ -43,7 +43,7 @@ export class AllProjectsComponent implements OnInit {
     this.projectService.getAllProjects()
       .subscribe(res => {
         this.dataSource.data = res as ProjectVmDto[];
-        console.log(this.dataSource.data)
+
       })
   }
   projectToDeleteId = "";
@@ -52,7 +52,7 @@ export class AllProjectsComponent implements OnInit {
   }
   deleteProject() {
     this.projectService.deleteProject(this.projectToDeleteId).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Deleted Sucessfully", "Success!");
       document.getElementById("deleteModalClose").click();
     },

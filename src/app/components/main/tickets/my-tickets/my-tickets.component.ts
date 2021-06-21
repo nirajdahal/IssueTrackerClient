@@ -57,7 +57,7 @@ export class MyTicketsComponent implements OnInit {
       this.ticketService.getMyTickets(userId)
         .subscribe(res => {
           this.dataSource.data = res as GetAllTicketVmDto[];
-          console.log(this.dataSource.data)
+
         })
     }
   }
@@ -75,10 +75,10 @@ export class MyTicketsComponent implements OnInit {
     this.ticketTodeleteId = Id;
   }
   deleteTicket() {
-    console.log(this.ticketTodeleteId);
+
     // this.ticketService.deleteMyTickets(this.ticketTodeleteId);
     this.ticketService.deleteMyTickets(this.ticketTodeleteId).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Deleted Sucessfully", "Success!");
       document.getElementById("deleteModalClose").click();
     },

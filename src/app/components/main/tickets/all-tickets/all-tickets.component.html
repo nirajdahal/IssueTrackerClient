@@ -63,7 +63,7 @@
                     <div class="container mt-2 mb-2">
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Ticket :</b>
+                                <b><i class="fa fa-ticket" aria-hidden="true"></i> Ticket :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Title}}
@@ -71,7 +71,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Project :</b>
+                                <b><i class="fa fa-line-chart" aria-hidden="true"></i> Project :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.ProjectVm.Title}}
@@ -79,7 +79,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Details :</b>
+                                <b><i class="fa fa-info" aria-hidden="true"></i> Details :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Description}}
@@ -87,7 +87,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Developers :</b>
+                                <b><i class="fa fa-users" aria-hidden="true"></i> Developers :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
                                 <div *ngFor="let user of element.UsersTicketsVm">
@@ -98,7 +98,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Created At :</b>
+                                <b><i class="fa fa-calendar" aria-hidden="true"></i> Created :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-lg-0 text-left">
                                 {{element.CreatedAt | date}}
@@ -114,7 +114,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Updated At :</b>
+                                <b><i class="fa fa-calendar" aria-hidden="true"></i> Updated :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-lg-0 text-left">
                                 {{element.UpdatedAt | date}}

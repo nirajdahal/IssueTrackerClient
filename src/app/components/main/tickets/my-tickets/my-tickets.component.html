@@ -27,7 +27,7 @@
         </ng-container>
         <ng-container matColumnDef="priority">
             <th mat-header-cell *matHeaderCellDef> Priority</th>
-            <td mat-cell *matCellDef="let element"><i class="fa fa-tasks" aria-hidden="true"></i> {{element.TicketPriorityVm.Name}}</td>
+            <td mat-cell *matCellDef="let element">{{element.TicketPriorityVm.Name}}</td>
         </ng-container>
         <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef><i class="fa fa-signal" aria-hidden="true"></i> Status </th>
@@ -43,7 +43,7 @@
                 <button (click)="getTicketToDelete(element.Id)" type="button"
                     class="bg-transparent border-0 text-danger" data-toggle="modal" data-target="#deleteModal"
                     data-backdrop='static' data-keyboard='false'>
-                    <i class="fas fa-trash-alt fa-lg"></i>
+                    <i class="fa fa-trash-alt fa-lg text-danger"></i>
                 </button>
             </td>
         </ng-container>
@@ -68,7 +68,7 @@
 
                             </div>
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Ticket :</b>
+                                <b><i class="fa fa-ticket" aria-hidden="true"></i>Ticket :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Title}}
@@ -76,7 +76,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Project :</b>
+                                <b><i class="fa fa-line-chart" aria-hidden="true"></i> Project :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.ProjectVm.Title}}
@@ -84,7 +84,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Details :</b>
+                                <b><i class="fa fa-info" aria-hidden="true"></i> Details :</b>
                             </div>
                             <div class="col-9 col-lg-10  pl-lg-0 text-left">
                                 {{element.Description}}
@@ -92,7 +92,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Developers :</b>
+                                <b><i class="fa fa-users" aria-hidden="true"></i> Devs :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-3 pl-lg-0 text-left">
                                 <div *ngFor="let user of element.UsersTicketsVm">
@@ -103,7 +103,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Created At :</b>
+                                <b><i class="fa fa-user-secret" aria-hidden="true"></i> Created:</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-lg-0 text-left">
                                 {{element.CreatedAt | date}}
@@ -119,7 +119,7 @@
                         </div>
                         <div class="row">
                             <div class="col-3 col-lg-1 p-0 text-left">
-                                <b>Updated At :</b>
+                                <b><i class="fa fa-calendar" aria-hidden="true"></i> Updated :</b>
                             </div>
                             <div class="col-9 col-lg-10 pl-lg-0 text-left">
                                 {{element.UpdatedAt | date}}

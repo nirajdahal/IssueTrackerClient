@@ -22,7 +22,7 @@ export class TicketTypeComponent implements OnInit {
       Name: this.ticketTypeName
     }
     this.ticketSetting.createTicketType(this.dataToCreate).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Created Sucessfully", "Success!");
     },
       (err) => {

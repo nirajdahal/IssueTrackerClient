@@ -79,9 +79,9 @@ export class CreateTicketComponent implements OnInit {
       "Description": this.ticketDescription,
       "ProjectId": this.projectId
     }
-    console.log(this.ticketForCreation)
+
     this.ticketService.createTicket(this.ticketForCreation).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Created Sucessfully", "Success!");
       this.ticketTitle="";
       this.ticketDescription = "";

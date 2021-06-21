@@ -21,7 +21,7 @@ export class TicketStatusComponent implements OnInit {
       Name: this.TicketStatusName
     }
     this.ticketSetting.createTicketStatus(this.dataToCreate).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Created Sucessfully", "Success!");
     },
       (err) => {

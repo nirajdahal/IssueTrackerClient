@@ -43,7 +43,7 @@ export class AllTicketsComponent implements OnInit {
     this.ticketService.getAllTickets()
       .subscribe(res => {
         this.dataSource.data = res as GetAllTicketVmDto[];
-        console.log(this.dataSource.data)
+
       })
   }
 
@@ -52,10 +52,10 @@ export class AllTicketsComponent implements OnInit {
     this.ticketTodeleteId = Id;
   }
   deleteTicket() {
-    console.log(this.ticketTodeleteId);
+
 
     this.ticketService.deleteMyTickets(this.ticketTodeleteId).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Deleted Sucessfully", "Success!");
       document.getElementById("deleteModalClose").click();
     },

@@ -115,10 +115,10 @@ export class UpdateTicketComponent implements OnInit {
       });
   }
   onItemSelect(item: any) {
-    console.log(item);
+
   }
   onSelectAll(items: any) {
-    console.log(items);
+
   }
   getDevelopers() {
     this.userService.getAllDevelopers().subscribe(developersList => {

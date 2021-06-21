@@ -51,7 +51,7 @@ export class MyProjectsComponent implements OnInit {
   projectToDeleteId = "";
   deleteProject() {
     this.projectService.deleteProject(this.projectToDeleteId).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Deleted Sucessfully", "Success!");
       document.getElementById("deleteModalClose").click();
     },

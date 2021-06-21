@@ -59,7 +59,7 @@ export class CreateProjectComponent implements OnInit {
       Description:this.projectDescription,
       ProjectManagers:projectManagerToAssign
     }
-    console.log(projectManagerToAssign);
+
     this.projectService.createProject( this.dataToUpdate).subscribe(data => {
       this.router.navigateByUrl("/home/project/getprojects");
       this.toastr.success("Project has been updated successfully");

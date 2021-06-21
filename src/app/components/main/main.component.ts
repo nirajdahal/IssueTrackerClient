@@ -17,7 +17,6 @@ export class MainComponent implements OnInit {
   userRole: string = "";
   ngOnInit(): void {
     var token = localStorage.getItem("issueTrackerToken")
-    console.log(token);
     this.userRole = this.userService.userRole();
     if(this.userService.accessMainComponent()){
       this.router.navigate(['/user/registration']);

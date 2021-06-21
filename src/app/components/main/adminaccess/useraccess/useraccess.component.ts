@@ -34,11 +34,10 @@ export class UseraccessComponent implements OnInit {
 
   onUserChange(val) {
     this.selectedUser = val;
-    console.log(this.selectedUser);
+
   }
   onRoleChange(e) {
    this.selectedRole = e;
-   console.log(this.selectedRole);
   }
   submitUserRole() {
     let userRoleForModification = new UserRoleForModification;

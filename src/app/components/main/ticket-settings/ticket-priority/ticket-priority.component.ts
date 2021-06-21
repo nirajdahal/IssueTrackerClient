@@ -20,7 +20,7 @@ export class TicketPriorityComponent implements OnInit {
       Name: this.ticketPriorityName
     }
     this.ticketSetting.createTicketPriority(this.dataToCreate).subscribe(data => {
-      console.log(data);
+
       this.toastr.success("Ticket Created Sucessfully", "Success!");
     },
       (err) => {

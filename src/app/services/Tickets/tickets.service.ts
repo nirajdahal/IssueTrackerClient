@@ -31,7 +31,7 @@ export class TicketsService {
   }
   updateMyTickets(id: String, data:TicketForUpdateDto) {
     var payload = data;
-    console.log(data)
+
     return this.http.put<TicketForUpdateDto>(this.BaseURI + '/ticket/' + id, payload,this.httpHeader);
   }
   deleteMyTickets(id: String) {

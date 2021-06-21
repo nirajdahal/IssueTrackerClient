@@ -18,7 +18,7 @@ export class UserprofileComponent implements OnInit {
         this.valueExtracted = true;
 
         this.userInfo = data;
-        console.log(this.userInfo)
+
       })
     }
 

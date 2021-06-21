@@ -29,7 +29,7 @@ export class TicketDetailsComponent implements OnInit {
       this.router.navigate(['/home/ticket/mytickets']);
     }
     this.getCommentsForTicket();
-    console.log(this.userTicketInformation);
+
   }
 
   comments:TicketCommentVmDto[];
@@ -46,7 +46,7 @@ export class TicketDetailsComponent implements OnInit {
 
   ticketComment: string="";
   createComment() {
-    console.log(this.ticketComment);
+
     var data: TicketCommentVmDto={
       TicketId:this.userTicketInformation.Id,
       Description:this.ticketComment
