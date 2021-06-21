@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, SingleDataSet } from 'ng2-charts';
 import { DashboardDataForTicket } from 'src/app/models/Tickets/Ticket';
+import { UserRolesCount } from 'src/app/models/User';
+import { DashboardServiceService } from 'src/app/services/Dashboard/dashboard-service.service';
 import { TicketsService } from 'src/app/services/Tickets/tickets.service';
 
 @Component({
@@ -16,14 +18,13 @@ export class DashboardComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
-  public barChartLabels: Label[] = ['Ticket'];
+  public barChartLabels: Label[] = ['Total Tickets & Projects'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
   public barChartData: ChartDataSets[] = [
-    { data: [65], label: 'Priority' },
-    { data: [28], label: 'Type' },
-     { data: [55], label: 'Status' }
+    { data: [0], label: 'Projects' },
+    { data: [0], label: 'Tickets' },
   ];
 
 
@@ -41,9 +42,10 @@ export class DashboardComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
-  constructor(private ticketService: TicketsService) {
+  constructor(private dashboardService:DashboardServiceService, private ticketService: TicketsService) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
+
   }
   totalTicketsNumber:number = 0;
   ngOnInit() {
@@ -53,6 +55,8 @@ export class DashboardComponent implements OnInit {
       this.ticketStatusData(data.TicketStatusData);
       this.totalTicketsNumber = data.totalTickets;
     })
+    this.getUserRolesCount();
+    this.getProjectTicketCount()
   }
 
   ticketTypeData(data: DashboardDataForTicket[]){
@@ -90,5 +94,28 @@ export class DashboardComponent implements OnInit {
     this.pieChartLabelsStatus= chartLabels;
     this.pieChartDataStatus = chartData;
   }
+  userRolesCount :UserRolesCount[] = [];
+  showUserRoleCount = false;
+  getUserRolesCount(){
+
+    this.dashboardService.getUserRoles().subscribe(res=> {
+      this.userRolesCount = res;
+      this.showUserRoleCount = true;
+    })
+  }
+
+
+
+  getProjectTicketCount(){
+    this.dashboardService.getProjectTicket().subscribe(res => {
+      this.barChartData = [
+
+        { data: [res.ProjectCount], label: 'Projects' },
+      { data: [res.TicketCount], label: 'Tickets' },
+      {data:[0], label:""}]
+    })
+  }
 
 }
+
+

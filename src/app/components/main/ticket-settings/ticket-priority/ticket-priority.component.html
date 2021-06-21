@@ -23,12 +23,12 @@
       <th scope="row">{{i}}</th>
       <td>{{priority.Name}}</td>
       <td>
-        <i (click)="openDeleteModal(priority.Id)" type="button" class="fas fa-trash btn btn-transparent"
+        <i (click)="openDeleteModal(priority.Id)" type="button" class="fa fa-trash btn btn-transparent text-danger"
           data-toggle="modal" data-target="#deleteModal" data-backdrop='static' data-keyboard='false'>
         </i>
       </td>
       <td>
-        <i (click)="openEditModal(priority.Id, priority.Name)" type="button" class="far fa-edit btn btn-transparent" data-toggle="modal"
+        <i (click)="openEditModal(priority.Id, priority.Name)" type="button" class="fa fa-edit btn btn-transparent" data-toggle="modal"
           data-target="#editModal" data-backdrop='static' data-keyboard='false' >
         </i>
       </td>

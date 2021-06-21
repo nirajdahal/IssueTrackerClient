@@ -37,6 +37,7 @@ import { UserSettingsComponent } from './components/main/user-settings/user-sett
 import { DashboardComponent } from './components/main/dashboard/dashboard.component';
 import { TicketDetailsComponent } from './components/main/tickets/ticket-details/ticket-details.component';
 import { UseraccessComponent } from './components/main/adminaccess/useraccess/useraccess.component';
+import { CreateroleComponent } from './components/main/adminaccess/createrole/createrole.component';
 
 
 export function tokenGetter() {
@@ -66,7 +67,9 @@ export function tokenGetter() {
     UserSettingsComponent,
     DashboardComponent,
     TicketDetailsComponent,
-    UseraccessComponent
+    UseraccessComponent,
+    CreateroleComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -25,7 +25,7 @@ export class UserSettingsComponent implements OnInit {
       this.passwordMatch = false;
       this.passwordLength = false;
     }
-    if (this.newPassword.length > 6 && this.confirmPassword.length > 6) {
+    if (this.newPassword.length > 5 && this.confirmPassword.length > 5) {
       this.passwordLength = true;
     }
     else {

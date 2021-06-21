@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { IssueTrackerConfiguration } from 'src/app/IssueTrackerConfig';
-import { UserDetails, UserRoleForModification, UserRoles } from 'src/app/models/User';
+import { CreateRoles, UserDetails, UserRoleForModification, UserRoles } from 'src/app/models/User';
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,12 @@ export class AdminAcessServiceService {
     var payload = data;
     return this.http.post<UserRoleForModification>(this.BaseURI + '/adminaccess/userrole', payload, this.httpHeader);
   }
+
+  createRoles(data:CreateRoles){
+    var payload = data;
+    return this.http.post<CreateRoles>(this.BaseURI + '/adminaccess/createrole', payload, this.httpHeader);
+  }
+
 
 
 }
